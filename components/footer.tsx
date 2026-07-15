@@ -43,7 +43,7 @@ const Footer = () => {
     return (
         <>
             <footer className="w-full border-t border-b border-border bg-bg-primary">
-                <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6">
+                <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
                     <div className="border-x border-border bg-bg-card">
                         <div className="grid grid-cols-1 md:grid-cols-4 w-full">
                             {/* Column 1 (Left - blank on desktop) */}
@@ -241,7 +241,7 @@ const Footer = () => {
                 </div>
 
             </footer>
-            <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6">
+            <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
                 <div className="border border-border border-t-0 bg-bg-card relative">
 
                     {/* FIG. 02 Label */}
