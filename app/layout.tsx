@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Tiny5 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -37,9 +38,11 @@ export default function RootLayout({
       className={`${inter.variable} ${mono.variable} ${tiny5.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

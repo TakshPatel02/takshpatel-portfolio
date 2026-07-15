@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from 'next/link';
 import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "./theme-provider";
 
 const navItems = [
     { label: "Home", to: "/" },
@@ -13,6 +14,8 @@ const navItems = [
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { theme, toggleTheme } = useTheme();
+
     return (
         <>
             <header className="sticky top-0 z-50 w-full border-b border-border bg-bg-primary/80 backdrop-blur transition-colors duration-300">
@@ -45,13 +48,13 @@ const Navbar = () => {
                                 type="button"
                                 className="rounded-full border border-border bg-btn-bg p-2 text-text-secondary transition hover:border-border hover:text-text-primary"
                                 aria-label="Toggle theme"
-                            //   onClick={toggleTheme}
+                                onClick={toggleTheme}
                             >
-                                {/* {theme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )} */}
+                                {theme === "dark" ? (
+                                    <Sun className="h-4 w-4" />
+                                ) : (
+                                    <Moon className="h-4 w-4" />
+                                )}
                             </button>
 
                             <button
