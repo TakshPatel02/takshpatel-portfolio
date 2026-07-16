@@ -1,0 +1,95 @@
+'use client'
+import { useState, useCallback, useRef } from "react";
+import { motion, animate } from "framer-motion";
+import IsoMetricLogo from "./iso-metric-logo";
+
+
+
+// ── FlipLink animation ──
+const DURATION = 0.25;
+const STAGGER = 0.025;
+
+const FlipLink = ({ children }: { children: string }) => (
+    <motion.div
+        initial="initial"
+        whileHover="hovered"
+        className="relative block overflow-hidden whitespace-nowrap text-xl font-bold sm:text-2xl lg:text-4xl"
+        style={{ lineHeight: 0.75 }}
+    >
+        <div>
+            {children.split("").map((l, i) => (
+                <motion.span
+                    key={i}
+                    variants={{ initial: { y: 0 }, hovered: { y: "-100%" } }}
+                    transition={{ duration: DURATION, ease: "easeInOut", delay: STAGGER * i }}
+                    className="inline-block"
+                >
+                    {l === " " ? "\u00A0" : l}
+                </motion.span>
+            ))}
+        </div>
+        <div className="absolute inset-0">
+            {children.split("").map((l, i) => (
+                <motion.span
+                    key={i}
+                    variants={{ initial: { y: "100%" }, hovered: { y: 0 } }}
+                    transition={{ duration: DURATION, ease: "easeInOut", delay: STAGGER * i }}
+                    className="inline-block"
+                >
+                    {l === " " ? "\u00A0" : l}
+                </motion.span>
+            ))}
+        </div>
+    </motion.div>
+);
+
+
+// ── Combined Hero Panel + Info Card ──
+const HeroPanel = () => {
+
+    return (
+        <div className="w-full">
+            {/* Top border line spanning full screen width */}
+            <div className="h-px w-full bg-border" />
+            <IsoMetricLogo />
+
+            {/* Horizontal divider line spanning full screen width */}
+            <div className="h-px w-full bg-border" />
+
+            <section className="mx-auto w-full max-w-200 px-4 sm:px-6 relative z-5">
+                <div className="border-x border-border bg-bg-card">
+
+                    {/* Info card — avatar placed inside a square box in the left column */}
+                    <div className="flex items-stretch bg-bg-card relative z-0" style={{ height: "140px" }}>
+                        <div className="w-35 shrink-0 border-r border-border flex items-center justify-center">
+                            <img
+                                src="https://res.cloudinary.com/portfolioblog/image/upload/v1772124137/ghibli_by7gu7.webp"
+                                alt="Taksh Patel"
+                                className="h-full w-full rounded-full object-cover"
+                            />
+                        </div>
+                        <div className="flex-1 flex flex-col">
+                            {/* Row 1: Empty spacer row for letters overlap */}
+                            <div className="border-b border-border h-15" />
+
+                            {/* Row 2: Name row */}
+                            <div className="border-b border-border h-10 flex items-center px-2">
+                                <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-3xl">
+                                    <FlipLink>Taksh Patel</FlipLink>
+                                </h2>
+                            </div>
+
+                            {/* Row 3: Tagline row */}
+                            <div className="h-10 flex items-center px-2 text-sm text-text-secondary font-mono">
+                                Creating with code. Small details matter.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default HeroPanel;

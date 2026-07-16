@@ -1,10 +1,10 @@
-import Image from "next/image";
+import HeroPanel from "@/components/home/hero-panel";
 
 export default function Home() {
   return (
     <>
-      <div className="text-primary">
-        <h1></h1>
+      <div>
+        <HeroPanel />
       </div>
     </>
   );
