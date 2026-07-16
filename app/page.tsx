@@ -1,5 +1,6 @@
 import HeroPanel from "@/components/home/hero-panel";
 import IntroSection from "@/components/home/intro-section";
+import TechStack from "@/components/home/tech-stack";
 import SectionDivider from "@/components/section-divider";
 
 export default function Home() {
@@ -9,6 +10,9 @@ export default function Home() {
         <HeroPanel />
         <SectionDivider />
         <IntroSection />
+        <SectionDivider />
+        <TechStack />
+        <SectionDivider />
       </div>
     </>
   );
