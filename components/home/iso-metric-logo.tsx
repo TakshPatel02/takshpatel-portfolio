@@ -1,3 +1,4 @@
+'use client'
 import { useState, useCallback, useRef } from "react";
 import { motion, animate } from "framer-motion";
 import type { AnimationPlaybackControlsWithThen } from "framer-motion";

@@ -1,4 +1,3 @@
-'use client'
 import IsoMetricLogo from "./iso-metric-logo";
 import FlipLink from "../fliplink";
 
