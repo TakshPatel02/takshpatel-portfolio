@@ -1,5 +1,6 @@
 import IsoMetricLogo from "./iso-metric-logo";
 import FlipLink from "../fliplink";
+import Image from "next/image";
 
 const HeroPanel = () => {
     return (
@@ -17,9 +18,12 @@ const HeroPanel = () => {
                     {/* Info card — avatar placed inside a square box in the left column */}
                     <div className="flex items-stretch bg-bg-card relative z-0" style={{ height: "140px" }}>
                         <div className="w-35 shrink-0 border-r border-border flex items-center justify-center">
-                            <img
+                            <Image
                                 src="https://res.cloudinary.com/portfolioblog/image/upload/v1772124137/ghibli_by7gu7.webp"
                                 alt="Taksh Patel"
+                                priority
+                                width={140}
+                                height={140}
                                 className="h-full w-full rounded-full object-cover"
                             />
                         </div>
