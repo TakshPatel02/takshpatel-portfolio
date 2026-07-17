@@ -5,7 +5,7 @@ import FlipLink from "./fliplink";
 const Footer = () => {
     return (
         <>
-            <footer className="w-full border-t border-b border-border bg-bg-primary">
+            <footer className="w-full border-b border-border bg-bg-primary">
                 <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
                     <div className="border-x border-border bg-bg-card">
                         <div className="grid grid-cols-1 md:grid-cols-4 w-full">

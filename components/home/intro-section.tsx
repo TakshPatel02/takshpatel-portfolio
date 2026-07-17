@@ -8,7 +8,7 @@ const IntroSection = () => {
   return (
     <section className="w-full">
       {/* Header Box */}
-      <div className="w-full border-y border-border">
+      <div className="w-full border-b border-border">
         <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card px-5 py-4">
             <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl">

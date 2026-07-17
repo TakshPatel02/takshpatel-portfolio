@@ -18,7 +18,7 @@ const SectionDivider = ({ className = "" }) => {
       </div>
 
       {/* Bottom border line */}
-      {/* <div className="h-px w-full bg-border"></div> */}
+      <div className="h-px w-full bg-border"></div>
     </div>
   );
 };
