@@ -1,3 +1,5 @@
+import ApiExamples from "@/components/authkit/api-example";
+import ApiReference from "@/components/authkit/api-reference";
 import AuthKitHero from "@/components/authkit/authkit-hero";
 import EnvVariables from "@/components/authkit/env-variables";
 import QuickStart from "@/components/authkit/quick-start";
@@ -15,6 +17,10 @@ export default function AuthKitPage() {
                 <QuickStart />
                 <SectionDivider />
                 <EnvVariables />
+                <SectionDivider />
+                <ApiReference />
+                <SectionDivider />
+                <ApiExamples />
                 <SectionDivider />
             </div>
         </>
