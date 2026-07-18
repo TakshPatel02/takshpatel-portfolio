@@ -1,3 +1,4 @@
+import BlogSection from "@/components/home/blog-section";
 import HeroPanel from "@/components/home/hero-panel";
 import IntroSection from "@/components/home/intro-section";
 import NpmPackages from "@/components/home/npm-packages";
@@ -16,6 +17,8 @@ export default function Home() {
         <TechStack />
         <SectionDivider />
         <NpmPackages />
+        <SectionDivider />
+        <BlogSection />
         <SectionDivider />
         <TechResources />
         <SectionDivider />
