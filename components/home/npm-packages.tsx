@@ -1,37 +1,7 @@
-'use client'
-import { useState } from "react";
 import { ExternalLink, Terminal, Copy, Check, Package } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { NpmPackages as npmPackagesData } from "@/lib/data/npm-packages";
-
-const CopyButton = ({ text }: { text: string }) => {
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch {
-            /* fallback: silently fail */
-        }
-    };
-
-    return (
-        <button
-            onClick={handleCopy}
-            className="shrink-0 p-1 rounded hover:bg-white/10 transition-colors cursor-pointer"
-            aria-label="Copy install command"
-        >
-            {copied ? (
-                <Check size={12} className="text-[#59d499]" />
-            ) : (
-                <Copy size={12} className="text-text-muted opacity-60 group-hover/cmd:opacity-100 transition-opacity" />
-            )}
-        </button>
-    );
-};
+import CopyButton from "../copy-button";
 
 const NpmPackageCard = ({ pkg }: { pkg: any }) => {
     return (
@@ -68,7 +38,7 @@ const NpmPackageCard = ({ pkg }: { pkg: any }) => {
                 </div>
 
                 {/* Install command */}
-                <div className="group/cmd w-full flex items-center gap-2 rounded-md border border-border bg-(--color-surface-elevated) px-3 py-2 font-mono text-[11px] text-text-secondary">
+                <div className="group/cmd w-full flex items-center gap-2 rounded-md border border-border bg-(--color-surface-elevated) px-3 py-2 font-mono text-[11px] text-text-secondary relative">
                     <Terminal size={12} className="shrink-0 text-text-muted" />
                     <code className="flex-1 break-all select-all">{pkg.installCmd}</code>
                     <CopyButton text={pkg.installCmd} />

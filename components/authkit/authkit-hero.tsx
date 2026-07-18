@@ -1,38 +1,8 @@
-'use client'
-import { useState } from "react";
-import { Terminal, Copy, Check, ExternalLink, Package, Shield } from "lucide-react";
+import { Terminal, ExternalLink, Package, Shield } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import CopyButton from "../copy-button";
 
 const installCmd = "npx create-express-authkit my-backend";
-
-const CopyButton = ({ text }: {text: string}) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* fallback: silently fail */
-    }
-  };
-
-  return (
-    <button
-      onClick={handleCopy}
-      className="shrink-0 p-1 rounded hover:bg-white/10 transition-colors cursor-pointer"
-      aria-label="Copy install command"
-    >
-      {copied ? (
-        <Check size={13} className="text-[#59d499]" />
-      ) : (
-        <Copy size={13} className="text-text-muted opacity-60 group-hover/cmd:opacity-100 transition-opacity" />
-      )}
-    </button>
-  );
-};
 
 const AuthKitHero = () => {
   return (
@@ -72,7 +42,7 @@ const AuthKitHero = () => {
       <div className="w-full border-b border-border">
         <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card px-5 py-4">
-            <div className="group/cmd flex items-center gap-3 rounded-lg border border-border bg-(--color-surface-elevated) px-4 py-3 font-mono text-xs sm:text-sm text-text-secondary">
+            <div className="group/cmd relative flex items-center gap-3 rounded-lg border border-border bg-(--color-surface-elevated) px-4 py-3 font-mono text-xs sm:text-sm text-text-secondary">
               <Terminal size={14} className="shrink-0 text-text-muted" />
               <code className="flex-1 break-all select-all">{installCmd}</code>
               <CopyButton text={installCmd} />
