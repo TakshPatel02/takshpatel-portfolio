@@ -1,0 +1,80 @@
+import { Info } from "lucide-react";
+import CopyButton from "../copy-button";
+
+const envContent = `PORT=8000
+
+# MongoDB
+MONGODB_URL=mongodb://127.0.0.1:27017/authentication
+
+# JWT Secrets — replace with strong, unique secrets
+ACCESS_JWT_SECRET=your_access_jwt_secret_key
+REFRESH_JWT_SECRET=your_refresh_jwt_secret_key
+JWT_RESET_PASSWORD_TOKEN_SECRET=your_reset_password_jwt_secret_key
+
+# JWT Expiry
+ACCESS_JWT_EXPIRES_IN=15m
+REFRESH_JWT_EXPIRES_IN=7d
+RESET_PASSWORD_JWT_EXPIRES_IN=15m
+
+# CORS
+CORS_ORIGIN=http://localhost:5173
+
+# Email (Nodemailer — Gmail App Password)
+GOOGLE_USER=your_google_user@gmail.com
+GOOGLE_APP_PASSWORD=your_16_character_app_password`;
+
+const EnvVariables = () => {
+  return (
+    <section id="env-variables" className="w-full scroll-mt-24">
+      {/* Header Box */}
+      <div className="w-full border-b border-border">
+        <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
+          <div className="border-x border-border bg-bg-card px-5 py-4">
+            <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl">
+              Environment Variables
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Code Block */}
+      <div className="w-full border-b border-border">
+        <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
+          <div className="border-x border-border bg-bg-card p-5">
+            <div className="group/cmd relative rounded-lg border border-border bg-(--color-surface-elevated) overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-2 border-b border-border">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+                  .env
+                </span>
+                <CopyButton text={envContent} />
+              </div>
+              <div className="px-4 py-3 font-mono text-[11px] sm:text-xs text-text-secondary overflow-x-auto leading-relaxed">
+                <pre className="whitespace-pre">{envContent}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Note */}
+      <div className="w-full">
+        <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
+          <div className="border-x border-border bg-bg-card px-5 py-4">
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-(--color-surface-elevated) px-4 py-3">
+              <Info size={14} className="shrink-0 mt-0.5 text-text-muted" />
+              <p className="text-xs text-text-secondary leading-relaxed">
+                Email delivery uses a Gmail account with an{" "}
+                <strong className="text-text-primary">App Password</strong> (not
+                OAuth2). Generate one from your Google Account → Security → 2-Step
+                Verification → App Passwords. Requires 2FA to be enabled on the
+                account.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EnvVariables;
