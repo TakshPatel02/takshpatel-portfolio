@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from 'next/link';
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "./theme-provider";
+import { usePathname } from "next/navigation";
 
 const navItems = [
     { label: "Home", to: "/" },
@@ -15,6 +16,7 @@ const navItems = [
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, toggleTheme } = useTheme();
+    const pathname = usePathname();
 
     return (
         <>
@@ -36,7 +38,7 @@ const Navbar = () => {
                                         <Link
                                             key={item.to}
                                             href={item.to}
-                                            className={"text-text-primary font-semibold hover:text-text-primary"}
+                                            className={`font-semibold hover:text-text-primary ${pathname === item.to ? "text-text-primary" : ""}`}
                                         >
                                             {item.label}
                                         </Link>
@@ -83,7 +85,7 @@ const Navbar = () => {
                                             key={item.to}
                                             href={item.to}
                                             onClick={() => setIsOpen(false)}
-                                            className={"rounded-lg px-3 py-2 transitionbg-hover-bg text-text-primary font-semibold hover:bg-hover-bg hover:text-text-primary"}
+                                            className={`rounded-lg px-3 py-2 transitionbg-hover-bg font-semibold hover:bg-hover-bg hover:text-text-primary ${pathname === item.to ? "text-text-primary" : ""}`}
                                         >
                                             {item.label}
                                         </Link>
