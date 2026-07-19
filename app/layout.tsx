@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import ScrollToTop from "@/components/scroll-to-top";
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -42,6 +43,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
