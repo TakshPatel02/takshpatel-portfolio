@@ -1,7 +1,7 @@
 import { getBlogs } from "@/lib/firebase";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { BlogCard } from "../blog-card";
+import { BlogCard } from "../blog/blog-card";
 
 const BlogSection = async () => {
     const allBlogs = await getBlogs();

@@ -1,4 +1,4 @@
-import { BlogCard } from "../blog-card";
+import { BlogCard } from "./blog-card";
 
 const BlogGrid = ({ posts }: { posts: any[] }) => {
   // Split posts into rows of 2
