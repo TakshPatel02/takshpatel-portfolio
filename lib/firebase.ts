@@ -11,6 +11,19 @@ export interface BlogPost {
     markdownUrl?: string;
 }
 
+export interface Project {
+    id: number;
+    title: string;
+    description: string;
+    status: string;
+    previewImage: string;
+    isGithub: boolean;
+    isLive: boolean;
+    githubLink?: string;
+    liveLink?: string;
+    bgColor?: string;
+}
+
 export async function getBlogs(): Promise<BlogPost[]> {
     const response = await fetch(`${firebaseConfig.databaseURL}/blogs.json`, {
         next: { revalidate: 3600 },
@@ -52,8 +65,8 @@ export async function getBlogMarkdown(post: BlogPost): Promise<string> {
   return res.text();
 }
 
-export async function getProjects(): Promise<any[]> {
-    const response = await fetch(`${firebaseConfig.databaseURL}/projects.json`, {
+export async function getProjects(): Promise<Project[]> {
+    const response = await fetch(`${firebaseConfig.databaseURL}/project-next.json`, {
         next: { revalidate: 3600 },
     });
     if (!response.ok) throw new Error("Failed to fetch data from Firebase");
@@ -62,7 +75,7 @@ export async function getProjects(): Promise<any[]> {
 
     if (!data) return [];
 
-    const projects: any[] = Object.values(data).flat();
+    const projects: Project[] = Object.values(data).flat() as Project[];
 
     return projects;
 }
