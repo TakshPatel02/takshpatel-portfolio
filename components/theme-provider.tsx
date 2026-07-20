@@ -9,18 +9,20 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) setTheme(saved);
-  }, []);
+export const ThemeProvider = ({
+  children,
+  initialTheme = "light",
+}: {
+  children: React.ReactNode;
+  initialTheme?: string;
+}) => {
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
+    document.cookie = `theme=${theme};path=/;max-age=${365 * 24 * 60 * 60};SameSite=Lax`;
   }, [theme]);
 
   const toggleTheme = () => {
@@ -48,3 +50,4 @@ export const useTheme = (): ThemeContextType => {
   if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
   return ctx;
 };
+

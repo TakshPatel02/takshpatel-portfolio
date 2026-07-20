@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
+import { cookies } from "next/headers";
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -28,18 +29,21 @@ export const metadata: Metadata = {
   description: "Taksh Patel is a full stack developer skilled in React, Tailwind, GSAP, Node.js, MongoDB and PostgreSQL. Building modern, high-performance web applications.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const theme = cookieStore.get("theme")?.value || "light";
+
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${mono.variable} ${tiny5.variable} h-full antialiased`}
+      className={`${theme === "dark" ? "dark" : ""} ${inter.variable} ${mono.variable} ${tiny5.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
+        <ThemeProvider initialTheme={theme}>
           <Navbar />
           {children}
           <Footer />
@@ -49,3 +53,4 @@ export default function RootLayout({
     </html>
   );
 }
+
