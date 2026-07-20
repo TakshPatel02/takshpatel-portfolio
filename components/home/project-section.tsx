@@ -5,7 +5,7 @@ import ProjectCard from "../project/project-card";
 
 const ProjectSection = async () => {
     const allProjects = await getProjects();
-    const projectsData = [...allProjects].reverse().slice(0, 4);
+    const projectsData = [...allProjects].slice(0, 4);
     const rows = [];
     for (let i = 0; i < projectsData.length; i += 2) {
         rows.push(projectsData.slice(i, i + 2));
