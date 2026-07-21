@@ -26,28 +26,19 @@ const IntroSection = () => {
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
                 <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  Frontend & full-stack developer building real, production-grade projects — not tutorial clones
+                  Ship real products, not portfolio filler — ComponentLabs (60+ open-source React components) is out and in use
                 </p>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
                 <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  Currently shipping{" "}
-                  <a
-                    href="https://component-labs.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-text-muted hover:decoration-text-primary hover:text-text-primary transition-all duration-200"
-                  >
-                    ComponentLabs
-                  </a>
-                  , an open-source React component library with 60+ animated UI components
+                  Deep in Next.js and Redis right now — App Router, Server Actions, Server Components, no shortcuts
                 </p>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
                 <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  IT undergrad at GTU, sharpening MERN + Next.js skills while preparing for placements
+                  IT undergrad at GTU, building toward placements with things I've actually shipped, not just studied
                 </p>
               </li>
             </ul>
