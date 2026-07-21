@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import { cookies } from "next/headers";
+import SmoothScrollProvider from "@/components/smooth-scroll-provider";
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -44,10 +45,12 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider initialTheme={theme}>
-          <Navbar />
-          {children}
-          <Footer />
-          <ScrollToTop />
+          <SmoothScrollProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <ScrollToTop />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>
