@@ -1,4 +1,5 @@
 import BlogSection from "@/components/home/blog-section";
+import ComponentLabs from "@/components/home/component-labs";
 import HeroPanel from "@/components/home/hero-panel";
 import IntroSection from "@/components/home/intro-section";
 import NpmPackages from "@/components/home/npm-packages";
@@ -20,6 +21,8 @@ export default function Home() {
         <ProjectSection />
         <SectionDivider />
         <NpmPackages />
+        <SectionDivider />
+        <ComponentLabs />
         <SectionDivider />
         <BlogSection />
         <SectionDivider />
