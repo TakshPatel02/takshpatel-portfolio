@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { learningResources } from "@/lib/data/tech-resources";
 import type { ResourceStatus } from "@/lib/data/tech-resources";
 import SectionDivider from "@/components/section-divider";
+import { siteConfig } from "@/lib/config/site-config";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Resources · Taksh Patel",
@@ -11,18 +13,23 @@ export const metadata: Metadata = {
 };
 
 const STATUS_LABEL: Record<ResourceStatus, string> = {
-    completed:     "Completed",
+    completed: "Completed",
     "in-progress": "In Progress",
-    ongoing:       "Ongoing",
+    ongoing: "Ongoing",
 };
 
 const STATUS_COLOR: Record<ResourceStatus, string> = {
-    completed:     "text-[#1a7a4a] dark:text-[#59d499] border-[#1a7a4a]/25 dark:border-[#59d499]/25 bg-[#1a7a4a]/6 dark:bg-[#59d499]/8",
+    completed: "text-[#1a7a4a] dark:text-[#59d499] border-[#1a7a4a]/25 dark:border-[#59d499]/25 bg-[#1a7a4a]/6 dark:bg-[#59d499]/8",
     "in-progress": "text-[#8a5c00] dark:text-[#ffc533] border-[#8a5c00]/25 dark:border-[#ffc533]/25 bg-[#8a5c00]/6 dark:bg-[#ffc533]/8",
-    ongoing:       "text-[#0077b6] dark:text-[#57c1ff] border-[#0077b6]/25 dark:border-[#57c1ff]/25 bg-[#0077b6]/6 dark:bg-[#57c1ff]/8",
+    ongoing: "text-[#0077b6] dark:text-[#57c1ff] border-[#0077b6]/25 dark:border-[#57c1ff]/25 bg-[#0077b6]/6 dark:bg-[#57c1ff]/8",
 };
 
 export default function ResourcesPage() {
+
+    if (!siteConfig.features.showResources) {
+        notFound();
+    }
+
     return (
         <main className="w-full">
 

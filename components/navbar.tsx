@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { usePathname } from "next/navigation";
+import { siteConfig } from "@/lib/config/site-config";
 
-const navItems = [
+const allNavItems = [
     { label: "Home", to: "/" },
     { label: "Projects", to: "/projects" },
     { label: "Blog", to: "/blog" },
-    { label: "AuthKit", to: "/authkit" },
+    { label: "AuthKit", to: "/authkit", flag: "showAuthkit" as const },
     { label: "Resume", to: "/resume" },
 ];
 
@@ -17,6 +18,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, toggleTheme } = useTheme();
     const pathname = usePathname();
+
+    const navItems = allNavItems.filter((item) => !item.flag || siteConfig.features[item.flag]);
 
     return (
         <>

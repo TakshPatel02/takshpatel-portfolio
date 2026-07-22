@@ -7,28 +7,39 @@ import ProjectSection from "@/components/home/project-section";
 import TechResources from "@/components/home/tech-resources";
 import TechStack from "@/components/home/tech-stack";
 import SectionDivider from "@/components/section-divider";
+import { siteConfig } from "@/lib/config/site-config";
 
 export default function Home() {
   return (
-    <>
-      <div>
-        <HeroPanel />
-        <SectionDivider />
-        <IntroSection />
-        <SectionDivider />
-        <TechStack />
-        <SectionDivider />
-        <ProjectSection />
-        <SectionDivider />
-        <NpmPackages />
-        <SectionDivider />
-        <ComponentLabs />
-        <SectionDivider />
-        <BlogSection />
-        <SectionDivider />
-        <TechResources />
-        <SectionDivider />
-      </div>
-    </>
+    <div>
+      <HeroPanel />
+      <SectionDivider />
+      <IntroSection />
+      <SectionDivider />
+      <TechStack />
+      <SectionDivider />
+      <ProjectSection />
+      <SectionDivider />
+      {siteConfig.features.showNpmPackages && (
+        <>
+          <NpmPackages />
+          <SectionDivider />
+        </>
+      )}
+      {siteConfig.features.showComponents && (
+        <>
+          <ComponentLabs />
+          <SectionDivider />
+        </>
+      )}
+      <BlogSection />
+      <SectionDivider />
+      {siteConfig.features.showResources && (
+        <>
+          <TechResources />
+          <SectionDivider />
+        </>
+      )}
+    </div>
   );
 }

@@ -11,36 +11,41 @@ import ScriptsSection from "@/components/authkit/scripts";
 import SecurityHighlights from "@/components/authkit/security-highlights";
 import WhyAuthKit from "@/components/authkit/why-authkit";
 import SectionDivider from "@/components/section-divider";
+import { siteConfig } from "@/lib/config/site-config";
+import { notFound } from "next/navigation";
 
 export default function AuthKitPage() {
+
+    if (!siteConfig.features.showAuthkit) {
+        notFound();
+    }
+
     return (
-        <>
-            <div>
-                <AuthKitHero />
-                <SectionDivider />
-                <WhyAuthKit />
-                <SectionDivider />
-                <QuickStart />
-                <SectionDivider />
-                <EnvVariables />
-                <SectionDivider />
-                <ApiReference />
-                <SectionDivider />
-                <ApiExamples />
-                <SectionDivider />
-                <RateLimiting />
-                <SectionDivider />
-                <ProjectStructure />
-                <SectionDivider />
-                <SecurityHighlights />
-                <SectionDivider />
-                <BuiltWith />
-                <SectionDivider />
-                <ScriptsSection />
-                <SectionDivider />
-                <LinksSection />
-                <SectionDivider />
-            </div>
-        </>
+        <div>
+            <AuthKitHero />
+            <SectionDivider />
+            <WhyAuthKit />
+            <SectionDivider />
+            <QuickStart />
+            <SectionDivider />
+            <EnvVariables />
+            <SectionDivider />
+            <ApiReference />
+            <SectionDivider />
+            <ApiExamples />
+            <SectionDivider />
+            <RateLimiting />
+            <SectionDivider />
+            <ProjectStructure />
+            <SectionDivider />
+            <SecurityHighlights />
+            <SectionDivider />
+            <BuiltWith />
+            <SectionDivider />
+            <ScriptsSection />
+            <SectionDivider />
+            <LinksSection />
+            <SectionDivider />
+        </div>
     )
 }

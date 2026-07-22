@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import SectionDivider from "@/components/section-divider";
+import { notFound } from "next/navigation";
+import { siteConfig } from "@/lib/config/site-config";
 
 export const metadata: Metadata = {
     title: "System · Taksh Patel",
@@ -7,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function SystemPage() {
+
+    if (!siteConfig.features.showSystem) {
+        notFound();
+    }
+
     return (
         <main className="w-full">
 
