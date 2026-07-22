@@ -1,6 +1,7 @@
 'use client'
 import { Mail, ArrowUp, FileText } from "lucide-react";
 import FlipLink from "./fliplink";
+import { siteConfig } from "@/lib/config/site-config";
 
 const Footer = () => {
     return (
@@ -22,12 +23,12 @@ const Footer = () => {
                                         </div>
                                         <div className="flex-1 text-left text-text-secondary font-mono text-xs sm:text-sm">
                                             <a
-                                                href="https://github.com/takshpatel02"
+                                                href={siteConfig.links.github}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="hover:text-text-primary transition-colors underline decoration-border/60 hover:decoration-text-primary"
                                             >
-                                                Taksh Patel
+                                                {siteConfig.name}
                                             </a>
                                         </div>
                                     </div>
@@ -162,9 +163,9 @@ const Footer = () => {
                             <div className="hidden md:block md:col-span-1 border-r border-border" />
 
                             {/* Social box grid (Middle) */}
-                            <div className="col-span-1 md:col-span-2 grid grid-cols-4 w-full font-mono text-xs sm:text-sm">
+                            <div className="col-span-1 md:col-span-2 grid grid-cols-5 w-full font-mono text-xs sm:text-sm">
                                 <a
-                                    href="https://x.com/TakshPatel02"
+                                    href={siteConfig.links.x}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center py-4 border-r border-border hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
@@ -172,7 +173,7 @@ const Footer = () => {
                                     <span className="transition-colors duration-200 group-hover:text-text-primary">x</span>
                                 </a>
                                 <a
-                                    href="https://linkedin.com/in/taksh-patel20"
+                                    href={siteConfig.links.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center py-4 border-r border-border hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
@@ -180,7 +181,7 @@ const Footer = () => {
                                     <span className="transition-colors duration-200 group-hover:text-text-primary">linkedin</span>
                                 </a>
                                 <a
-                                    href="https://github.com/takshpatel02"
+                                    href={siteConfig.links.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center py-4 border-r border-border hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
@@ -191,9 +192,17 @@ const Footer = () => {
                                     href="/llms.txt"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center py-4 hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
+                                    className="flex items-center justify-center py-4 border-r border-border hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
                                 >
                                     <span className="transition-colors duration-200 group-hover:text-text-primary">llms</span>
+                                </a>
+                                <a
+                                    href={`mailto:${siteConfig.links.email}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center py-4 hover:bg-hover-bg hover:text-text-primary text-text-muted transition-colors cursor-pointer group"
+                                >
+                                    <span className="transition-colors duration-200 group-hover:text-text-primary">email</span>
                                 </a>
                             </div>
 
@@ -219,10 +228,10 @@ const Footer = () => {
                             {/* Left Section */}
                             <div className="flex flex-col gap-1.5">
                                 <h2 className="font-display font-bold text-text-primary text-xl sm:text-2xl lg:text-3xl">
-                                    <FlipLink>Taksh Patel</FlipLink>
+                                    <FlipLink>{siteConfig.name}</FlipLink>
                                 </h2>
                                 <p className="font-mono text-sm text-text-secondary">
-                                    Creating with code. Small details matter.
+                                    {siteConfig.tagline}
                                 </p>
                             </div>
 
@@ -287,7 +296,7 @@ const Footer = () => {
                         {/* Bottom Copyright Row */}
                         <div className="border-t border-border py-3 text-center">
                             <p className="text-xs text-text-secondary font-mono">
-                                © 2026 Taksh Patel. All rights reserved.
+                                © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
                             </p>
                         </div>
                         <div

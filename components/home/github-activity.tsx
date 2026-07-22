@@ -1,6 +1,7 @@
 'use client'
 import dynamic from "next/dynamic";
 import { useTheme } from "../theme-provider";
+import { siteConfig } from "@/lib/config/site-config";
 
 const GitHubCalendar = dynamic(
     () => import("react-github-calendar").then((mod) => mod.GitHubCalendar),
@@ -21,7 +22,7 @@ const GithubActivity = () => {
                 <div className="border-x border-border bg-bg-card px-5 py-4">
                     <div className="flex justify-center overflow-x-auto">
                         <GitHubCalendar
-                            username="takshpatel02"
+                            username={siteConfig.githubUsername}
                             colorScheme={theme === "dark" ? "dark" : "light"}
                             theme={calendarTheme}
                             fontSize={14}

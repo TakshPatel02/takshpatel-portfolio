@@ -1,6 +1,7 @@
 import IsoMetricLogo from "./iso-metric-logo";
 import FlipLink from "../fliplink";
 import Image from "next/image";
+import { siteConfig } from "@/lib/config/site-config";
 
 const HeroPanel = () => {
     return (
@@ -19,8 +20,8 @@ const HeroPanel = () => {
                     <div className="flex items-stretch bg-bg-card relative z-0" style={{ height: "140px" }}>
                         <div className="w-35 shrink-0 border-r border-border flex items-center justify-center relative">
                             <Image
-                                src="https://res.cloudinary.com/portfolioblog/image/upload/v1772124137/ghibli_by7gu7.webp"
-                                alt="Taksh Patel"
+                                src={siteConfig.images.avatar}
+                                alt={siteConfig.name}
                                 priority
                                 fill
                                 sizes="140px"
@@ -34,13 +35,13 @@ const HeroPanel = () => {
                             {/* Row 2: Name row */}
                             <div className="border-b border-border h-10 flex items-center px-2">
                                 <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-3xl">
-                                    <FlipLink>Taksh Patel</FlipLink>
+                                    <FlipLink>{siteConfig.name}</FlipLink>
                                 </h2>
                             </div>
 
                             {/* Row 3: Tagline row */}
                             <div className="h-10 flex items-center px-2 text-sm text-text-secondary font-mono">
-                                Creating with code. Small details matter.
+                                {siteConfig.tagline}
                             </div>
                         </div>
                     </div>

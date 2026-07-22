@@ -2,9 +2,10 @@ import React from "react";
 import { FileText } from "lucide-react";
 import GithubActivity from "./github-activity";
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { siteConfig } from '@/lib/config/site-config'
 
 const IntroSection = () => {
-  
+
   return (
     <section className="w-full">
       {/* Header Box */}
@@ -23,24 +24,14 @@ const IntroSection = () => {
         <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card p-3">
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
-                <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  Ship real products, not portfolio filler — ComponentLabs (60+ open-source React components) is out and in use
-                </p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
-                <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  Deep in Next.js and Redis right now — App Router, Server Actions, Server Components, no shortcuts
-                </p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
-                <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  IT undergrad at GTU, building toward placements with things I've actually shipped, not just studied
-                </p>
-              </li>
+              {siteConfig.bio.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-text-muted opacity-80" />
+                  <p className="text-sm leading-relaxed text-text-secondary sm:text-base">
+                    {item}
+                  </p>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -51,7 +42,7 @@ const IntroSection = () => {
         <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card p-4 px-3 flex items-center gap-3">
             <a
-              href="https://github.com/takshpatel02"
+              href={siteConfig.links.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-bg-secondary text-text-secondary hover:bg-hover-bg hover:text-text-primary transition-all duration-200"
@@ -60,7 +51,7 @@ const IntroSection = () => {
               <FaGithub className="h-4 w-4" />
             </a>
             <a
-              href="https://twitter.com/takshpatel"
+              href={siteConfig.links.x}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-bg-secondary text-text-secondary hover:bg-hover-bg hover:text-text-primary transition-all duration-200"
@@ -71,7 +62,7 @@ const IntroSection = () => {
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/taksh-patel20"
+              href={siteConfig.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-bg-secondary text-text-secondary hover:bg-hover-bg hover:text-text-primary transition-all duration-200"
