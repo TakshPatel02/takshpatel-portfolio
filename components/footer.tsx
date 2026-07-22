@@ -240,8 +240,6 @@ const Footer = () => {
                             <div className="flex flex-col gap-2.5 font-mono text-xs sm:text-sm">
                                 <Link
                                     href="/resources"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-text-secondary hover:text-[#ff3366] transition-colors duration-200 group"
                                 >
                                     <BookOpen size={14} className="text-text-muted group-hover:text-[#ff3366] transition-colors duration-200" />
@@ -250,8 +248,6 @@ const Footer = () => {
 
                                 <Link
                                     href="/system"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-text-secondary hover:text-[#ff3366] transition-colors duration-200 group"
                                 >
                                     <Cpu size={14} className="text-text-muted group-hover:text-[#ff3366] transition-colors duration-200" />
@@ -260,8 +256,6 @@ const Footer = () => {
                                 
                                 <Link
                                     href="movies"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-text-secondary hover:text-[#ff3366] transition-colors duration-200 group"
                                 >
                                     <Clapperboard size={14} className="text-text-muted group-hover:text-[#ff3366] transition-colors duration-200" />
