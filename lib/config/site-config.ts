@@ -20,7 +20,7 @@ export const siteConfig = {
     features: {
         showComponents: true,
         showNpmPackages: true,
-        showAuthkit: false,
+        showAuthkit: true,
         showResources: true,
         showMovies: true,
         showSystem: true,
