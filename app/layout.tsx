@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import { cookies } from "next/headers";
 import SmoothScrollProvider from "@/components/smooth-scroll-provider";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -48,6 +49,7 @@ export default async function RootLayout({
           <SmoothScrollProvider>
             <Navbar />
             {children}
+            <Analytics />
             <Footer />
             <ScrollToTop />
           </SmoothScrollProvider>
