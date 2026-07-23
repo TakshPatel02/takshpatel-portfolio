@@ -2,6 +2,7 @@
 import { useState, useCallback, useRef } from "react";
 import { motion, animate } from "framer-motion";
 import type { AnimationPlaybackControlsWithThen } from "framer-motion";
+import { metalClickSound } from "@/lib/soundcn/sounds";
 
 // ── Isometric projection constants ──
 const CELL = 52;
@@ -263,10 +264,33 @@ const VBH = maxY - minY + PAD_TOP + PAD_BOTTOM;
 const CX = (minX + maxX) / 2;
 const CY = (minY + maxY) / 2;
 
+// ── Decode the metal-click sound once and cache the AudioBuffer ──
+const decodeSound = (() => {
+    let cached: AudioBuffer | null = null;
+    let decoding = false;
+    const cbs: ((buf: AudioBuffer) => void)[] = [];
+    return (ctx: AudioContext, cb: (buf: AudioBuffer) => void) => {
+        if (cached) { cb(cached); return; }
+        cbs.push(cb);
+        if (decoding) return;
+        decoding = true;
+        const b64 = metalClickSound.dataUri.split(",")[1];
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        ctx.decodeAudioData(bytes.buffer).then((buf) => {
+            cached = buf;
+            cbs.forEach((fn) => fn(buf));
+            cbs.length = 0;
+        });
+    };
+})();
+
 const IsoMetricLogo = () => {
     const [zTop, setZTop] = useState(0);
     const [isPressed, setIsPressed] = useState(false);
     const animRef = useRef<AnimationPlaybackControlsWithThen | null>(null);
+    const audioCtxRef = useRef<AudioContext | null>(null);
 
     const handlePress = useCallback(() => {
         if (isPressed) return; // Prevent re-trigger while animating
@@ -274,6 +298,27 @@ const IsoMetricLogo = () => {
 
         if (animRef.current) {
             animRef.current.stop();
+        }
+
+        // Play metal click sound via Web Audio API
+        try {
+            if (!audioCtxRef.current) {
+                audioCtxRef.current = new AudioContext();
+            }
+            const ctx = audioCtxRef.current;
+            const play = (buf: AudioBuffer) => {
+                const src = ctx.createBufferSource();
+                src.buffer = buf;
+                src.connect(ctx.destination);
+                src.start();
+            };
+            if (ctx.state === "suspended") {
+                ctx.resume().then(() => decodeSound(ctx, play));
+            } else {
+                decodeSound(ctx, play);
+            }
+        } catch {
+            // Web Audio not available — silently skip
         }
 
         // Animate zTop from 0 to DEPTH * 0.5 (sinks 50% down, height shrinks by 50%)
