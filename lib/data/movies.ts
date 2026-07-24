@@ -56,3 +56,47 @@ export const movies: Movie[] = [
         posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784867959/spider-man_bkmsa3.webp",
     },
 ]
+
+export type FavoriteCategory = "Hollywood" | "Series" | "Anime";
+
+export interface FavoriteEntry {
+    name: string;
+    year: number;
+    posterUrl: string;
+}
+
+export interface FavoriteGroup {
+    category: FavoriteCategory;
+    items: FavoriteEntry[];
+}
+
+export const favorites: FavoriteGroup[] = [
+    {
+        category: "Hollywood",
+        items: [
+            { name: "Avengers: Endgame", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876474/endgame_xndybc.jpg" },
+            { name: "Top Gun", year: 1986, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/topgun_gytzwq.jpg" },
+            { name: "Top Gun: Maverick", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/maverik_y2ljfb.jpg" },
+            { name: "Mission Impossible", year: 1996, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/mission-impossible_efmjqj.jpg" },
+            { name: "Battleship", year: 2012, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876865/battleship_izt8cu.jpg" }
+        ],
+    },
+    {
+        category: "Series",
+        items: [
+            { name: "Money Heist", year: 2017, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/money-heist_r7fuz2.jpg" },
+            { name: "Game of Thrones", year: 2011, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876568/gameofthrones_yosars.jpg" },
+            { name: "The Night Agent", year: 2023, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876866/thenightagent_u2pd9n.jpg" }
+        ],
+    },
+    {
+        category: "Anime",
+        items: [
+            { name: "That Time I Got Reincarnated as a Slime", year: 2018, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/slime_kshfsn.jpg" },
+            { name: "Dr. Stone", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/destone_klz6hq.jpg" },
+            { name: "Solo Leveling", year: 2024, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/sololeveling_wvs6a9.jpg" },
+            { name: "Ao Ashi", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/aoashi_wvxejd.jpg" },
+            { name: "Shin Chan", year: 1992, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/shinchan_akoad6.jpg" },
+        ],
+    },
+]

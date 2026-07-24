@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { movies } from "@/lib/data/movies";
+import { movies, favorites } from "@/lib/data/movies";
 import SectionDivider from "@/components/section-divider";
 import { siteConfig } from "@/lib/config/site-config";
 import { notFound } from "next/navigation";
@@ -197,6 +197,96 @@ export default function MoviesPage() {
                                 </article>
                             );
                         })}
+
+                    </div>
+                </div>
+            </div>
+
+            <SectionDivider />
+
+            {/* ── Favorites ── */}
+            <div className="w-full">
+                <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
+                    <div className="border-x border-border bg-bg-card">
+
+                        {/* Section header */}
+                        <div className="border-b border-border px-5 py-4 flex items-baseline justify-between">
+                            <div className="flex items-baseline gap-3">
+                                <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted">
+                                    02 /
+                                </span>
+                                <h2 className="font-display font-bold text-text-primary text-base sm:text-lg">
+                                    Favorites
+                                </h2>
+                            </div>
+                            <span className="font-mono text-[9px] text-text-muted tracking-widest hidden sm:block">
+                                {favorites.reduce((acc, curr) => acc + curr.items.length, 0)} films & shows
+                            </span>
+                        </div>
+
+                        {/* Section description */}
+                        <div className="border-b border-border px-5 py-4">
+                            <p className="text-sm text-text-muted leading-relaxed max-w-2xl">
+                                Beyond the ones that shaped how I think, these are just films and shows I&apos;ve genuinely enjoyed — across Hollywood, series, and anime. No essays here, just good stories.
+                            </p>
+                        </div>
+
+                        {/* ── Categories ── */}
+                        {favorites.map((group, groupIdx) => (
+                            <div key={group.category} className={groupIdx < favorites.length - 1 ? "border-b border-border" : ""}>
+                                {/* Category Header */}
+                                <div className="border-b border-border px-5 py-3 bg-(--color-surface-elevated)/40 flex items-center justify-between">
+                                    <h3 className="font-mono text-[11px] uppercase tracking-widest text-text-secondary">
+                                        {group.category}
+                                    </h3>
+                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums">
+                                        {group.items.length}
+                                    </span>
+                                </div>
+                                
+                                {/* ── Movies Grid (Contact Sheet Style) ── */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-8 px-5 py-8">
+                                    {group.items.map((item, itemIdx) => (
+                                        <div key={item.name} className="flex flex-col gap-3 group">
+                                            {/* Fluid Blueprint Frame */}
+                                            <div className="relative w-full aspect- 2/3 p-1.5 border border-border bg-bg-secondary/30">
+                                                {/* Tick marks */}
+                                                <span className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-text-muted/40" />
+                                                <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-text-muted/40" />
+                                                <span className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-text-muted/40" />
+                                                <span className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-text-muted/40" />
+                                                
+                                                <div className="relative w-full h-full border border-border/50 overflow-hidden bg-[--color-surface-elevated]">
+                                                    <Image
+                                                        src={item.posterUrl}
+                                                        alt={`${item.name} poster`}
+                                                        fill
+                                                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
+                                                        className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
+                                                        priority={groupIdx === 0 && itemIdx < 4}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Info Panel */}
+                                            <div className="flex flex-col gap-1.5 px-1 mt-1">
+                                                <div className="flex items-baseline justify-between gap-2 border-b border-border/50 pb-1.5">
+                                                    <span className="font-mono text-[8px] text-text-muted tracking-widest tabular-nums uppercase">
+                                                        FILE · {String(itemIdx + 1).padStart(2, '0')}
+                                                    </span>
+                                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums">
+                                                        {item.year}
+                                                    </span>
+                                                </div>
+                                                <h4 className="font-display font-semibold text-text-primary text-xs sm:text-sm leading-snug">
+                                                    {item.name}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
 
                     </div>
                 </div>
