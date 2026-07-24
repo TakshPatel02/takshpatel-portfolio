@@ -249,7 +249,7 @@ export default function MoviesPage() {
                                     {group.items.map((item, itemIdx) => (
                                         <div key={item.name} className="flex flex-col gap-3 group">
                                             {/* Fluid Blueprint Frame */}
-                                            <div className="relative w-full aspect- 2/3 p-1.5 border border-border bg-bg-secondary/30">
+                                            <div className="relative w-full aspect-2/3 p-1.5 border border-border bg-bg-secondary/30">
                                                 {/* Tick marks */}
                                                 <span className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-text-muted/40" />
                                                 <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-text-muted/40" />
