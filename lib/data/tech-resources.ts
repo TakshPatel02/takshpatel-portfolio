@@ -98,6 +98,12 @@ export const learningResources: LearningResource[] = [
             "Learned Tailwind CSS and Framer Motion, but more importantly learned how to think about UI design — how to look at any website, deconstruct it, and recreate the animations and layout decisions behind it.",
         whyIRecommend:
             "No other channel taught me design thinking the way Manu's videos did. It's not about memorising classes or APIs — it's about developing an eye for detail and understanding the reasoning behind visual choices. This portfolio was directly inspired by watching his content.",
+        links: [
+            {
+                label: "Tailwind and Motion Notes (Manu arora's Website)",
+                url: "https://www.acelearn.dev/"
+            }
+        ]
     },
     {
         id: 6,
