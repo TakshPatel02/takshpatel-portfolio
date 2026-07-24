@@ -5,6 +5,7 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config/site-config";
+import { AnimatePresence, motion } from "framer-motion";
 
 const allNavItems = [
     { label: "Home", to: "/" },
@@ -41,7 +42,7 @@ const Navbar = () => {
                                         <Link
                                             key={item.to}
                                             href={item.to}
-                                            className={`font-semibold hover:text-text-primary ${pathname === item.to ? "text-text-primary" : ""}`}
+                                            className={`font-semibold hover:text-text-primary ${pathname === item.to ? "text-text-primary font-semibold" : "hover:text-text-primary text-text-secondary"}`}
                                         >
                                             {item.label}
                                         </Link>
@@ -78,26 +79,42 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {isOpen ? (
-                    <div className="md:hidden">
-                        <div className="mx-4 mb-4 rounded-2xl border border-border bg-bg-secondary/90 p-4 backdrop-blur">
-                            <div className="flex flex-col gap-3 text-sm font-medium text-text-secondary">
-                                {navItems.map((item) => {
-                                    return (
-                                        <Link
-                                            key={item.to}
-                                            href={item.to}
-                                            onClick={() => setIsOpen(false)}
-                                            className={`rounded-lg px-3 py-2 transitionbg-hover-bg font-semibold hover:bg-hover-bg hover:text-text-primary ${pathname === item.to ? "text-text-primary" : ""}`}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    );
-                                })}
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                            transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
+                            className="absolute left-0 right-0 top-full mt-2 px-4 md:hidden"
+                        >
+                            <div className="mx-auto w-full max-w-200">
+                                <div className="rounded-2xl border border-border bg-bg-secondary/95 p-4 shadow-xl backdrop-blur-lg">
+                                    <div className="flex flex-col gap-2 text-sm font-medium text-text-secondary">
+                                        {navItems.map((item, i) => {
+                                            return (
+                                                <motion.div
+                                                    key={item.to}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: i * 0.05 + 0.1, type: "spring", bounce: 0 }}
+                                                >
+                                                    <Link
+                                                        href={item.to}
+                                                        onClick={() => setIsOpen(false)}
+                                                        className={`block rounded-xl px-4 py-3 transition-colors font-semibold ${pathname === item.to ? "bg-btn-bg text-text-primary" : "hover:bg-hover-bg hover:text-text-primary"}`}
+                                                    >
+                                                        {item.label}
+                                                    </Link>
+                                                </motion.div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ) : null}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </header>
         </>
     )
