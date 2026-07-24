@@ -307,13 +307,8 @@ button:active {
    ══════════════════════════════════════════════ */
 
 ::selection {
-  background-color: rgba(87, 193, 255, 0.3);
-  color: inherit;
-}
-
-.dark ::selection {
-  background-color: rgba(87, 193, 255, 0.2);
-  color: #f4f4f6;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-primary);
 }
 
 /* ══════════════════════════════════════════════
@@ -385,10 +380,6 @@ html {
   scroll-behavior: auto;
 }
 
-::selection {
-  background-color: var(--color-text-primary);
-  color: var(--color-bg-primary);
-}
 
 /* Circle Wipe — Top Right */
 ::view-transition-old(root),
