@@ -22,7 +22,13 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
     requestAnimationFrame(raf)
 
+     const resizeObserver = new ResizeObserver(() => {
+      lenis.resize()
+    })
+    resizeObserver.observe(document.body)
+
     return () => {
+      resizeObserver.disconnect()
       lenis.destroy()
     }
   }, [])
