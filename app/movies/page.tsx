@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/config/site-config";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-    title: "Movies · Taksh Patel",
+    title: `Movies · ${siteConfig.name}`,
     description:
         "I don't just watch movies for entertainment — even something like a superhero film leaves me with a real takeaway. Some stories stick with me longer than others.",
 };

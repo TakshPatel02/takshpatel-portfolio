@@ -12,7 +12,13 @@ import SecurityHighlights from "@/components/authkit/security-highlights";
 import WhyAuthKit from "@/components/authkit/why-authkit";
 import SectionDivider from "@/components/section-divider";
 import { siteConfig } from "@/lib/config/site-config";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+    title: `AuthKit · ${siteConfig.name}`,
+    description: "Authkit is a powerful npm package that simplifies authentication and authorization in your applications. It provides a secure and efficient way to manage user access, ensuring that only authorized users can access specific resources.",
+}
 
 export default function AuthKitPage() {
 
