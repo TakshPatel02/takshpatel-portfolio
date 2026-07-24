@@ -3,6 +3,7 @@ import { useState, useCallback, useRef } from "react";
 import { motion, animate } from "framer-motion";
 import type { AnimationPlaybackControlsWithThen } from "framer-motion";
 import { metalClickSound } from "@/lib/soundcn/sounds";
+import { siteConfig } from "@/lib/config/site-config";
 
 // ── Isometric projection constants ──
 const CELL = 52;
@@ -17,17 +18,9 @@ const py = (c: number, r: number) => (r - c) * CELL * SIN30;
 const pt = (c: number, r: number) => ({ x: px(c, r), y: py(c, r) });
 
 // ── Letter grids [row, col] 0-indexed ──
-const T_CELLS: [number, number][] = [
-    [0, 0], [0, 1], [0, 2], [0, 3], [0, 4],
-    [1, 2], [2, 2], [3, 2], [4, 2],
-];
+const FIRST_CHAR_CELLS: [number, number][] = siteConfig.isoMetricLogo.firstChar as [number, number][];
 
-const P_CELLS: [number, number][] = [
-    [0, 0], [0, 1], [0, 2],
-    [1, 0], [1, 3],
-    [2, 0], [2, 1], [2, 2],
-    [3, 0], [4, 0],
-];
+const SECOND_CHAR_CELLS: [number, number][] = siteConfig.isoMetricLogo.secondChar as [number, number][];
 
 const P_OFF = 6;
 
@@ -36,10 +29,10 @@ const has = (cells: [number, number][], r: number, c: number) => cells.some(([ro
 // ── Combine all cells for complete scene-wide occlusion checking ──
 const getActiveBlocks = () => {
     const blocks = [];
-    for (const [r, c] of T_CELLS) {
+    for (const [r, c] of FIRST_CHAR_CELLS) {
         blocks.push([r, c]);
     }
-    for (const [r, c] of P_CELLS) {
+    for (const [r, c] of SECOND_CHAR_CELLS) {
         blocks.push([r, c + P_OFF]);
     }
     return blocks;
@@ -246,8 +239,8 @@ const computeBounds = () => {
             }
         }
     };
-    scan(T_CELLS, 0);
-    scan(P_CELLS, P_OFF);
+    scan(FIRST_CHAR_CELLS, 0);
+    scan(SECOND_CHAR_CELLS, P_OFF);
     return { minX, maxX, minY, maxY };
 };
 
@@ -364,8 +357,8 @@ const IsoMetricLogo = () => {
                         >
                             <Guides cx={CX} cy={CY} span={Math.max(VBW, VBH)} />
                             <g transform="translate(0, 10)">
-                                <Letter cells={T_CELLS} off={0} zTop={zTop} />
-                                <Letter cells={P_CELLS} off={P_OFF} zTop={zTop} />
+                                <Letter cells={FIRST_CHAR_CELLS} off={0} zTop={zTop} />
+                                <Letter cells={SECOND_CHAR_CELLS} off={P_OFF} zTop={zTop} />
                             </g>
                             <text
                                 x={maxX - 20}
