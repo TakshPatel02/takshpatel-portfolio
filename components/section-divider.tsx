@@ -2,7 +2,7 @@ const SectionDivider = ({ className = "" }) => {
   return (
     <div className={`w-full ${className} relative`}>
       {/* Top border line */}
-      <div className="h-[0.5px] w-full bg-border"></div>
+      <div className="h-px w-full bg-border"></div>
 
       {/* Diagonal hatched pattern */}
       <div
@@ -18,7 +18,7 @@ const SectionDivider = ({ className = "" }) => {
       </div>
 
       {/* Bottom border line */}
-      <div className="h-[0.5px] w-full bg-border"></div>
+      <div className="h-px w-full bg-border"></div>
     </div>
   );
 };
