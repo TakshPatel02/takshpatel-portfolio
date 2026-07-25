@@ -1,8 +1,10 @@
 'use client'
 import { BookOpen, Cpu, Clapperboard } from "lucide-react";
 import FlipLink from "./fliplink";
+import BridgeIllustration from "./bridge-illustration";
 import { siteConfig } from "@/lib/config/site-config";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
     return (
@@ -154,8 +156,13 @@ const Footer = () => {
                                 </div>
                             </div>
 
-                            {/* Column 3 (Right - blank on desktop) */}
-                            <div className="hidden md:block md:col-span-1 border-l border-border" />
+                            {/* Column 3 (Right - blank on desktop, now has theme-aware easter egg image) */}
+                            <div className="hidden md:block md:col-span-1 border-l border-border relative select-none pointer-events-auto z-10">
+                                {/* left-0 aligns the bridge to touch the left side border of Column 3 */}
+                                <div className="absolute bottom-0 left-0 flex items-end select-none pointer-events-auto">
+                                    <BridgeIllustration />
+                                </div>
+                            </div>
                         </div>
 
                         {/* Social links row */}
