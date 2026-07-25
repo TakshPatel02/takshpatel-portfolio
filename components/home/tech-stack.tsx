@@ -11,8 +11,23 @@ const TechStack = () => {
                 {/* Header Box */}
                 <div className="w-full border-b border-border">
                     <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
-                        <div className="border-x border-border bg-bg-card px-5 py-4">
-                            <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl">
+                        <div className="border-x border-border bg-bg-card px-5 pt-4 pb-4">
+                            {/* Technical Drawing Reference Line */}
+                            <div className="flex items-center gap-2.5 w-full font-mono text-[11px] text-text-muted mb-2.5 select-none">
+                                <svg width="10" height="10" viewBox="0 0 10 10" className="shrink-0 text-text-muted opacity-60">
+                                    <path d="M 0 10 L 0 0 L 10 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 2" />
+                                </svg>
+                                <span className="shrink-0 px-1.5 py-0.5 rounded border border-border bg-(--color-surface-elevated) font-mono text-[10px] font-semibold text-text-primary tracking-wider">
+                                    02
+                                </span>
+                                <div className="flex-1 h-px border-b border-dashed border-border" />
+                                <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-text-muted">
+                                    // LANGUAGES
+                                </span>
+                            </div>
+
+                            {/* Section Title */}
+                            <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-text-primary">
                                 Stack
                             </h2>
                         </div>
@@ -53,7 +68,7 @@ const TechStack = () => {
                                                         alt=""
                                                         className={`h-3.5 w-3.5 object-contain ${skill.invertInDark && theme === "dark" ? "invert" : ""
                                                             }`}
-                                                        onError={(e : React.SyntheticEvent<HTMLImageElement>) => {
+                                                        onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                                                             e.currentTarget.style.display = "none";
                                                         }}
                                                     />

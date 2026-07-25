@@ -12,17 +12,34 @@ const ProjectSection = async () => {
             {/* Header Box */}
             <div className="w-full border-b border-border">
                 <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
-                    <div className="border-x border-border bg-bg-card px-5 py-4 flex items-center justify-between">
-                        <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl flex items-center gap-2.5">
-                            Projects{" "}
-                            <span className="align-super text-xs font-normal text-text-muted sm:text-sm">
-                                ({allProjects.length})
+                    <div className="border-x border-border bg-bg-card px-5 pt-4 pb-4">
+                        {/* Technical Drawing Reference Line */}
+                        <div className="flex items-center gap-2.5 w-full font-mono text-[11px] text-text-muted mb-2.5 select-none">
+                            <svg width="10" height="10" viewBox="0 0 10 10" className="shrink-0 text-text-muted opacity-60">
+                                <path d="M 0 10 L 0 0 L 10 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 2" />
+                            </svg>
+                            <span className="shrink-0 px-1.5 py-0.5 rounded border border-border bg-(--color-surface-elevated) font-mono text-[10px] font-semibold text-text-primary tracking-wider">
+                                03
                             </span>
-                        </h2>
-                        <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs text-text-muted uppercase tracking-wider">
-                            <Layers size={13} className="text-accent-blue" />
-                            App Showcase
-                        </span>
+                            <div className="flex-1 h-px border-b border-dashed border-border" />
+                            <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-text-muted">
+                                // BUILDS
+                            </span>
+                        </div>
+
+                        {/* Section Title */}
+                        <div className="flex items-center justify-between">
+                            <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-text-primary flex items-center gap-2">
+                                Projects{" "}
+                                <span className="text-xs font-mono font-normal text-text-muted sm:text-sm">
+                                    ({allProjects.length})
+                                </span>
+                            </h2>
+                            <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs text-text-muted uppercase tracking-wider px-2.5 py-1 rounded border border-border bg-(--color-surface-elevated)">
+                                <Layers size={12} className="text-accent-blue" />
+                                App Showcase
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
