@@ -42,7 +42,7 @@ const Navbar = () => {
                                         <Link
                                             key={item.to}
                                             href={item.to}
-                                            className={`font-semibold hover:text-text-primary ${pathname === item.to ? "text-text-primary font-semibold" : "hover:text-text-primary text-text-secondary"}`}
+                                            className={`font-semibold transition-colors ${pathname === item.to ? "text-text-primary" : "text-text-muted dark:text-text-secondary hover:text-text-primary"}`}
                                         >
                                             {item.label}
                                         </Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
                                                     <Link
                                                         href={item.to}
                                                         onClick={() => setIsOpen(false)}
-                                                        className={`block rounded-xl px-4 py-3 transition-colors font-semibold ${pathname === item.to ? "bg-btn-bg text-text-primary" : "hover:bg-hover-bg hover:text-text-primary"}`}
+                                                        className={`block rounded-xl px-4 py-3 transition-colors font-semibold ${pathname === item.to ? "bg-btn-bg text-text-primary" : "text-text-muted dark:text-text-secondary hover:bg-hover-bg hover:text-text-primary"}`}
                                                     >
                                                         {item.label}
                                                     </Link>
