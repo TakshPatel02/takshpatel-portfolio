@@ -9,4 +9,8 @@ export const devThoughts: string[] = [
   "Redis is next. Ask me again in a week.",
   "This portfolio has more commits than sleep hours.",
   "Currently deciding between 12 shades of border-color.",
+  "Two Sum. Again. For practice, I swear.",
+  "Currently learning REST vs other API types at 1am.",
+  "Watched Ford v Ferrari again. Still not over it.",
+  "Built this easter egg instead of doing LeetCode. Worth it.",
 ]
