@@ -1,0 +1,53 @@
+# Taksh Patel
+
+> Creating with code. Shipping the honest version.
+
+Taksh Patel is an IT undergrad at GTU and a Full Stack Developer based in India. He focuses on building and shipping real products rather than portfolio fillers. Currently deep in Next.js (App Router, Server Actions, Server Components) and Redis, he has experience across modern web technologies, building scalable and interactive applications.
+
+## Contact & Links
+
+- **GitHub**: [github.com/takshpatel02](https://github.com/takshpatel02)
+- **LinkedIn**: [linkedin.com/in/taksh-patel20](https://linkedin.com/in/taksh-patel20)
+- **Twitter/X**: [x.com/TakshPatel02](https://x.com/TakshPatel02)
+- **Email**: [takshpatel022@gmail.com](mailto:takshpatel022@gmail.com)
+
+## Tech Stack
+
+- **Core Frameworks**: Next.js 16 (App Router), React 19, TypeScript
+- **Styling & Animation**: Tailwind CSS v4, Framer Motion, Lenis, GSAP
+- **Backend & Databases**: Redis, Node.js, Express.js, Firebase (Realtime Database), PostgreSQL, MongoDB
+- **Tools & Utilities**: Git, ESLint, React PDF, Markdown (remark/rehype)
+
+## Projects
+
+Projects are dynamically managed and synced via Firebase. Here are some key highlights:
+
+- **ComponentLabs**: 60+ open-source, ready-to-use, animated UI React components. (Live & Operational)
+- **AI Code Reviewer**: An AI-powered code quality analysis tool using the Gemini API.
+- **Link Shortener**: Full-stack URL shortening service.
+- **Task Master**: Employee management and task assignment system.
+- **FurnishHub**: Modern furniture e-commerce platform.
+- **FinFlow**: Financial dashboard with interactive charts.
+- **Terminal Portfolio**: An interactive CLI-style developer portfolio.
+- **Movie App v2.0**: TMDB-powered responsive movie browsing application.
+
+*Full list, live links, and repositories are available on the [Projects section](https://takshpatel.vercel.app/projects).*
+
+## Blogs
+
+Technical writing focused on practical web development, such as:
+- Session vs JWT Authentication in Node.js/MongoDB
+- Configuring Redux Toolkit in React
+- Transitions from tutorial hell to independent development
+- JavaScript fundamentals
+
+*All posts are synced via Firebase and readable on the [Blog section](https://takshpatel.vercel.app/blog).*
+
+## Other Areas Explored
+
+Beyond standard projects and blogs, the portfolio showcases:
+- **npm Packages**: Published and maintained packages.
+- **AuthKit**: Custom authentication strategies and implementations.
+- **Resources**: Curated list of technical reading materials and libraries.
+- **System**: Insight into personal development environment and setup.
+- **Movies**: A personalized cinematic catalog.
