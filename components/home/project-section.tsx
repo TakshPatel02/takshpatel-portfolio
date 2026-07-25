@@ -1,61 +1,43 @@
 import { getProjects } from "@/lib/firebase";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 import Link from "next/link";
 import ProjectCard from "../project/project-card";
 
 const ProjectSection = async () => {
     const allProjects = await getProjects();
-    const projectsData = [...allProjects].slice(0, 4);
-    const rows = [];
-    for (let i = 0; i < projectsData.length; i += 2) {
-        rows.push(projectsData.slice(i, i + 2));
-    }
+    const projectsData = [...allProjects].slice(0, 3);
 
     return (
         <section id="projects" className="w-full scroll-mt-24">
-            {/* Header */}
+            {/* Header Box */}
             <div className="w-full border-b border-border">
                 <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
-                    <div className="border-x border-border bg-bg-card px-5 py-4">
-                        <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl">
+                    <div className="border-x border-border bg-bg-card px-5 py-4 flex items-center justify-between">
+                        <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl flex items-center gap-2.5">
                             Projects{" "}
                             <span className="align-super text-xs font-normal text-text-muted sm:text-sm">
                                 ({allProjects.length})
                             </span>
                         </h2>
+                        <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs text-text-muted uppercase tracking-wider">
+                            <Layers size={13} className="text-accent-blue" />
+                            App Showcase
+                        </span>
                     </div>
                 </div>
             </div>
 
-            {/* Project Grid */}
+            {/* Alternating Equal-Attention Project Rows */}
             <div className="w-full border-b border-border">
                 <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
-                    <div className="border-x border-border bg-bg-card">
-                        {rows.map((row, rowIndex) => (
-                            <div
-                                key={rowIndex}
-                                className={`grid grid-cols-1 sm:grid-cols-2 ${rowIndex < rows.length - 1 ? "border-b border-border" : ""
-                                    }`}
-                            >
-                                {/* First card */}
-                                {row[0] && (
-                                    <div className="border-b border-border sm:border-b-0 sm:border-r">
-                                        <ProjectCard project={row[0]} />
-                                    </div>
-                                )}
-
-                                {/* Second card */}
-                                {row[1] && (
-                                    <div className={row.length === 1 ? "sm:border-r border-border" : ""}>
-                                        <ProjectCard project={row[1]} />
-                                    </div>
-                                )}
-
-                                {/* Empty cell if odd card in row */}
-                                {!row[1] && (
-                                    <div className="hidden sm:block" />
-                                )}
-                            </div>
+                    <div className="border-x border-border bg-bg-card divide-y divide-border">
+                        {projectsData.map((project, idx) => (
+                            <ProjectCard
+                                key={project.id}
+                                project={project}
+                                index={idx + 1}
+                                isReversed={idx % 2 !== 0}
+                            />
                         ))}
                     </div>
                 </div>
