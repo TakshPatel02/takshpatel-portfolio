@@ -2,6 +2,7 @@ import IsoMetricLogo from "./iso-metric-logo";
 import FlipLink from "../fliplink";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config/site-config";
+import LiveClock from "./live-clock";
 
 const HeroPanel = () => {
     return (
@@ -30,7 +31,9 @@ const HeroPanel = () => {
                         </div>
                         <div className="flex-1 flex flex-col">
                             {/* Row 1: Empty spacer row for letters overlap */}
-                            <div className="border-b border-border h-15" />
+                            <div className="border-b border-border h-15 flex items-end justify-end px-2 pb-1">
+                                <LiveClock />
+                            </div>
 
                             {/* Row 2: Name row */}
                             <div className="border-b border-border h-10 flex items-center px-2">
@@ -40,8 +43,8 @@ const HeroPanel = () => {
                             </div>
 
                             {/* Row 3: Tagline row */}
-                            <div className="h-10 flex items-center px-2 text-sm text-text-secondary font-mono">
-                                {siteConfig.tagline}
+                            <div className="h-10 flex items-center px-2 text-xs sm:text-sm text-text-secondary font-mono">
+                                <span className="line-clamp-2 leading-tight">{siteConfig.tagline}</span>
                             </div>
                         </div>
                     </div>

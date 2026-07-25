@@ -13,7 +13,7 @@ const IntroSection = () => {
         <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card px-5 py-4">
             <h2 className="font-display text-lg font-bold text-text-primary sm:text-2xl lg:text-4xl">
-              Hello
+              Where I'm at
             </h2>
           </div>
         </div>

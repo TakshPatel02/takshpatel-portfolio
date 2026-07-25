@@ -1,6 +1,6 @@
 export const siteConfig = {
     name: "Taksh Patel",
-    tagline: "Creating with code.Shipping the honest version.",
+    tagline: "Creating with code. Shipping the honest version.",
     bio: [
         "Ship real products, not portfolio filler — ComponentLabs (60+ open-source React components) is out and in use",
         "Deep in Next.js and Redis right now — App Router, Server Actions, Server Components, no shortcuts",
