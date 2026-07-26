@@ -15,7 +15,7 @@ export async function getBlogs(): Promise<Blog[]> {
 
     try {
         const response = await fetch(`${firebaseConfig.databaseURL}/blogs.json`, {
-            next: { revalidate: 3600 },
+            next: { revalidate: 60 },
         });
         if (!response.ok) throw new Error("Failed to fetch data from Firebase");
 
@@ -79,7 +79,7 @@ export async function getBlogMarkdown(post: Blog): Promise<string> {
         }
 
         // Remote URL → fetch normally
-        const res = await fetch(post.markdownUrl, { next: { revalidate: 3600 } });
+        const res = await fetch(post.markdownUrl, { next: { revalidate: 60 } });
         if (!res.ok) throw new Error("Failed to fetch markdown content");
         return await res.text();
     } catch {
@@ -96,7 +96,7 @@ export async function getProjects(): Promise<Project[]> {
 
     try {
         const response = await fetch(`${firebaseConfig.databaseURL}/project.json`, {
-            next: { revalidate: 3600 },
+            next: { revalidate: 60 },
         });
         if (!response.ok) throw new Error("Failed to fetch data from Firebase");
 
