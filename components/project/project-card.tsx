@@ -30,7 +30,9 @@ const ProjectCard = ({ project, index, isReversed = false }: ProjectCardProps) =
                         <div className="flex items-center justify-between gap-2 mb-3">
                             <span className="font-mono text-[11px] font-semibold text-text-muted uppercase tracking-wider flex items-center gap-1.5">
                                 <span className="h-1.5 w-1.5 rounded-full bg-accent-blue inline-block" />
-                                {formattedIndex ? `[${formattedIndex} // PROJECT]` : "[PROJECT SHOWCASE]"}
+                                {formattedIndex
+                                    ? `[${formattedIndex} // ${project.projectType ? project.projectType.toUpperCase() : "PROJECT"}]`
+                                    : `[${project.projectType ? project.projectType.toUpperCase() : "PROJECT SHOWCASE"}]`}
                             </span>
 
                             {/* Status badge */}

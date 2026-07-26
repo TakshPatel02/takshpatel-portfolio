@@ -22,6 +22,7 @@ export interface Project {
     githubLink?: string;
     liveLink?: string;
     bgColor?: string;
+    projectType: string;
 }
 
 export async function getBlogs(): Promise<BlogPost[]> {
