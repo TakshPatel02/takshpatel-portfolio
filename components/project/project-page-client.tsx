@@ -2,7 +2,7 @@
 
 import ProjectHeader from "@/components/project/project-header";
 import ProjectGrid from "@/components/project/project-grid";
-import { type Project } from "@/lib/firebase";
+import { type Project } from "@/lib/data/projects";
 import { useState } from "react";
 import SectionDivider from "../section-divider";
 

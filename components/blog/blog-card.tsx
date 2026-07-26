@@ -1,5 +1,5 @@
 "use client";
-import { type BlogPost } from "@/lib/firebase";
+import { type Blog } from "@/lib/data/blogs";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ const BlogImage = ({ src, alt }: { src: string; alt: string }) => (
   />
 );
 
-export const BlogCard = ({ post }: { post: BlogPost }) => (
+export const BlogCard = ({ post }: { post: Blog }) => (
     <Link href={`/blog/${post.slug}`} className="block h-full">
         <div className="group relative flex flex-col h-full p-3 sm:p-4 transition-colors duration-300 hover:bg-hover-bg">
             {/* Image Container */}

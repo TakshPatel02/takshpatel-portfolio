@@ -1,6 +1,6 @@
 "use client";
 
-import { type Project } from "@/lib/firebase";
+import { type Project } from "@/lib/data/projects";
 import { ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 

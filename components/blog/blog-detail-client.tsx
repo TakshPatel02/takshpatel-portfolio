@@ -10,7 +10,7 @@ import rehypeHighlight from "rehype-highlight";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, ArrowUp, List, X } from "lucide-react";
 import "highlight.js/styles/github-dark.css";
-import type { BlogPost } from "@/lib/firebase";
+import type { Blog } from "@/lib/data/blogs";
 
 /* ─── Slugify heading text for IDs ─── */
 const slugify = (text: string) =>
@@ -290,7 +290,7 @@ const TableOfContents = ({ headings, isOpen, onClose, activeId }: TableOfContent
 
 /* ─── Main client component ─── */
 interface BlogDetailClientProps {
-  post: BlogPost;
+  post: Blog;
   markdownContent: string;
 }
 

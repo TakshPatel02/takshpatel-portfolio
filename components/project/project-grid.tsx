@@ -1,4 +1,4 @@
-import { type Project } from "@/lib/firebase";
+import { type Project } from "@/lib/data/projects";
 import ProjectCard from "./project-card";
 
 const ProjectGrid = ({ projects }: { projects: Project[] }) => {
