@@ -10,10 +10,13 @@ const ProjectPageClient = ({ projects }: { projects: Project[] }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     // Filter projects based on search query
-    const filteredProjects = projects.filter((project) =>
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+    const filteredProjects = projects.filter((project) => {
+        if (!project) return false;
+        const q = (searchQuery || "").toLowerCase();
+        const titleMatch = project.title ? project.title.toLowerCase().includes(q) : false;
+        const descMatch = project.description ? project.description.toLowerCase().includes(q) : false;
+        return titleMatch || descMatch;
+    });
 
     return (
         <div className="w-full">

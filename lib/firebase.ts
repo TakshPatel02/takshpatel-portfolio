@@ -23,7 +23,26 @@ export async function getBlogs(): Promise<Blog[]> {
 
         if (!data) return [];
 
-        const blogs: Blog[] = Object.values(data).flat() as Blog[];
+        let rawItems: any[] = [];
+        if (Array.isArray(data)) {
+            rawItems = data;
+        } else if (typeof data === "object" && data !== null) {
+            if (Array.isArray(data.data)) {
+                rawItems = data.data;
+            } else if (typeof data.data === "object" && data.data !== null) {
+                rawItems = Object.values(data.data);
+            } else {
+                rawItems = Object.values(data).flat();
+            }
+        }
+
+        const blogs: Blog[] = rawItems.filter(
+            (item): item is Blog =>
+                item !== null &&
+                typeof item === "object" &&
+                typeof item.title === "string" &&
+                typeof item.slug === "string"
+        );
 
         return blogs;
 
@@ -44,7 +63,7 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
     };
 
     const targetSlug = normalize(slug);
-    return blogs.find((b) => normalize(b.slug) === targetSlug) ?? null;
+    return blogs.find((b) => b && b.slug && normalize(b.slug) === targetSlug) ?? null;
 }
 
 export async function getBlogMarkdown(post: Blog): Promise<string> {
@@ -85,7 +104,25 @@ export async function getProjects(): Promise<Project[]> {
 
         if (!data) return [];
 
-        const projects: Project[] = Object.values(data).flat() as Project[];
+        let rawItems: any[] = [];
+        if (Array.isArray(data)) {
+            rawItems = data;
+        } else if (typeof data === "object" && data !== null) {
+            if (Array.isArray(data.data)) {
+                rawItems = data.data;
+            } else if (typeof data.data === "object" && data.data !== null) {
+                rawItems = Object.values(data.data);
+            } else {
+                rawItems = Object.values(data).flat();
+            }
+        }
+
+        const projects: Project[] = rawItems.filter(
+            (item): item is Project =>
+                item !== null &&
+                typeof item === "object" &&
+                typeof item.title === "string"
+        );
 
         return projects;
 

@@ -10,7 +10,9 @@ const BlogPageClient = ({ blogs }: { blogs: Blog[] }) => {
 
     // Filter blogs based on search query
     const filteredPosts = blogs.filter((post) =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()),
+        post && post.title
+            ? post.title.toLowerCase().includes((searchQuery || "").toLowerCase())
+            : false,
     );
 
     return (
