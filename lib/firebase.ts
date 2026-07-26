@@ -76,7 +76,7 @@ export async function getProjects(): Promise<Project[]> {
     }
 
     try {
-        const response = await fetch(`${firebaseConfig.databaseURL}/project-next.json`, {
+        const response = await fetch(`${firebaseConfig.databaseURL}/project.json`, {
             next: { revalidate: 3600 },
         });
         if (!response.ok) throw new Error("Failed to fetch data from Firebase");
