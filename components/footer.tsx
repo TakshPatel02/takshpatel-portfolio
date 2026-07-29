@@ -5,6 +5,7 @@ import BridgeIllustration from "./bridge-illustration";
 import { siteConfig } from "@/lib/config/site-config";
 import Link from "next/link";
 import Image from "next/image";
+import RotatingTagline from "@/components/rotating-tagline";
 
 const Footer = () => {
     return (
@@ -238,8 +239,8 @@ const Footer = () => {
                                 <h2 className="font-display font-bold text-text-primary text-xl sm:text-2xl lg:text-3xl">
                                     <FlipLink>{siteConfig.name}</FlipLink>
                                 </h2>
-                                <p className="font-mono text-sm text-text-secondary">
-                                    {siteConfig.tagline}
+                                <p className="font-mono text-sm text-text-secondary overflow-hidden">
+                                    <RotatingTagline />
                                 </p>
                             </div>
 

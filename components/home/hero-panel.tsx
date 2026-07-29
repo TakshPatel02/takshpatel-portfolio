@@ -4,6 +4,7 @@ import FlipLink from "../fliplink";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config/site-config";
 import LiveClock from "./live-clock";
+import RotatingTagline from "@/components/rotating-tagline";
 
 const HeroPanel = () => {
     return (
@@ -44,8 +45,8 @@ const HeroPanel = () => {
                             </div>
 
                             {/* Row 3: Tagline row */}
-                            <div className="h-10 flex items-center px-2 text-xs sm:text-sm text-text-secondary font-mono">
-                                <span className="line-clamp-2 leading-tight">{siteConfig.tagline}</span>
+                            <div className="h-10 flex items-center px-2 text-xs sm:text-sm text-text-secondary font-mono overflow-hidden">
+                                <RotatingTagline />
                             </div>
                         </div>
                     </div>
