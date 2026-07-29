@@ -93,14 +93,9 @@ const BannerHero = () => {
                         className="relative w-full overflow-hidden"
                         style={{
                             aspectRatio: "16 / 7",
-                            maskImage: [
-                                "radial-gradient(ellipse 90% 88% at 50% 50%,",
-                                "  black 35%, transparent 100%)",
-                            ].join(" "),
-                            WebkitMaskImage: [
-                                "radial-gradient(ellipse 90% 88% at 50% 50%,",
-                                "  black 35%, transparent 100%)",
-                            ].join(" "),
+                            // Mask: image is fully visible until 48%, then fades to transparent
+                            maskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
+                            WebkitMaskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
                         }}
                     >
                         {BANNERS.map((banner, i) => (
@@ -123,23 +118,19 @@ const BannerHero = () => {
                         ))}
 
                         {/*
-                          Edge overlay — actively paints var(--color-bg-card) at the image
-                          edges so the dissolve is visible in BOTH themes:
-                          · Light mode → #ffffff painted at edges (bright dissolve)
-                          · Dark mode  → #0a0a0b painted at edges (pushes warm image
-                            pixels to black, making the fade visible on dark backgrounds)
+                          Edge overlay — paints var(--color-bg-card) only on the outer 30%
+                          of the ellipse (starts at 70%), so light-mode white-wash is
+                          minimal while dark-mode edge-to-black dissolve still works.
                         */}
                         <div
                             className="absolute inset-0 pointer-events-none z-10"
                             style={{
-                                background: [
-                                    "radial-gradient(ellipse 88% 84% at 50% 50%,",
-                                    "  transparent 38%, var(--color-bg-card) 100%)",
-                                ].join(" "),
+                                background: "radial-gradient(ellipse 90% 88% at 50% 50%, transparent 70%, var(--color-bg-card) 100%)",
                             }}
                         />
                     </div>
                 </div>
+
 
                 {/* ── Info strip ── */}
                 <div className="flex items-stretch divide-x divide-border border-t border-border select-none">
