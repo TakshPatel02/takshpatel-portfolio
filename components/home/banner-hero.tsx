@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { BANNERS, SLOT_END_HOURS } from "@/lib/data/banner-hero";
 
 // ── Slot names (matched to BANNERS index order) ──────────────────────
-const SLOT_NAMES = ["Morning", "Afternoon", "Evening", "Night"] as const;
+const SLOT_NAMES = ["Morning", "Afternoon", "Evening", "Night", "Late Night"] as const;
 
 // ── Pure helpers ───────────────────────────────────────────────────────
 
@@ -16,10 +16,11 @@ function getISTNow(): Date {
 
 /** Maps an IST hour (0–23) to the banner index that should be showing */
 function indexForHour(h: number): number {
-    if (h >= 5 && h < 11) return 0;
-    if (h >= 11 && h < 16) return 1;
-    if (h >= 16 && h < 20) return 2;
-    return 3;
+    if (h >= 5 && h < 11) return 0;  // Morning
+    if (h >= 11 && h < 16) return 1; // Afternoon
+    if (h >= 16 && h < 20) return 2; // Evening
+    if (h >= 20) return 3;            // Night   (20:00 – 23:59)
+    return 4;                          // Late Night (00:00 – 04:59)
 }
 
 /** Milliseconds from `istNow` until the end of `slotIdx`'s time window */
