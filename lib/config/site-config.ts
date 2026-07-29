@@ -18,6 +18,7 @@ export const siteConfig = {
     githubUsername: "takshpatel02", // for the github-activity component
 
     features: {
+        showIsoMetricLogo: false,
         showComponents: true,
         showNpmPackages: true,
         showAuthkit: true,

@@ -1,4 +1,5 @@
 import BannerHero from "./banner-hero";
+import IsoMetricLogo from "./iso-metric-logo";
 import FlipLink from "../fliplink";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config/site-config";
@@ -9,7 +10,7 @@ const HeroPanel = () => {
         <div className="w-full">
             {/* Top border line spanning full screen width */}
             <div className="h-px w-full bg-border" />
-            <BannerHero />
+            {siteConfig.features.showIsoMetricLogo ? <IsoMetricLogo /> : <BannerHero />}
 
             {/* Horizontal divider line spanning full screen width */}
             <div className="h-px w-full bg-border" />
