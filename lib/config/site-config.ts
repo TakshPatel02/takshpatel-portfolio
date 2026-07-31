@@ -10,6 +10,7 @@ export const siteConfig = {
         linkedin: "https://linkedin.com/in/taksh-patel20",
         x: "https://x.com/TakshPatel02",
         email: "takshpatel022@gmail.com",
+        hashnode: "https://takshpatel02.hashnode.dev/"
     },
     images: {
         avatar: "https://res.cloudinary.com/portfolioblog/image/upload/v1772124137/ghibli_by7gu7.webp",
