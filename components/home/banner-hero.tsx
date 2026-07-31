@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { BANNERS, SLOT_END_HOURS } from "@/lib/data/banner-hero";
 
@@ -49,9 +49,11 @@ const BannerHero = () => {
         indexForHour(getISTNow().getHours())
     );
     const [countdown, setCountdown] = useState<string>("");
+    const [showThought, setShowThought] = useState(false);
 
-    // Keep a ref to the boundary timer so we can cancel it on unmount
     const slotTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    // Ref for outside-click dismissal of the thought bubble
+    const imageWrapRef = useRef<HTMLDivElement>(null);
 
     // ── Auto-switch exactly at each slot boundary ──────────────────────
     useEffect(() => {
@@ -72,6 +74,25 @@ const BannerHero = () => {
         };
     }, []);
 
+    // ── Dismiss thought bubble when the banner changes ─────────────────
+    useEffect(() => {
+        setShowThought(false);
+    }, [current]);
+
+    // ── Outside-click dismissal ────────────────────────────────────────
+    useEffect(() => {
+        if (!showThought) return;
+
+        const handleOutside = (e: MouseEvent | TouchEvent) => {
+            if (imageWrapRef.current && !imageWrapRef.current.contains(e.target as Node)) {
+                setShowThought(false);
+            }
+        };
+
+        document.addEventListener("pointerdown", handleOutside);
+        return () => document.removeEventListener("pointerdown", handleOutside);
+    }, [showThought]);
+
     // ── Countdown — refreshes every minute ────────────────────────────
     useEffect(() => {
         const tick = () => {
@@ -90,45 +111,93 @@ const BannerHero = () => {
 
                 {/* Padding shell keeps the image from touching the border-x walls */}
                 <div className="p-4">
+                    {/*
+                      Outer wrapper — sets the aspect-ratio and is `relative`
+                      so the thought bubble can be positioned inside it WITHOUT
+                      being clipped by the inner overflow-hidden mask container.
+                      It's also the click target and outside-click ref root.
+                    */}
                     <div
-                        className="relative w-full overflow-hidden"
-                        style={{
-                            aspectRatio: "16 / 7",
-                            // Mask: image is fully visible until 48%, then fades to transparent
-                            maskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
-                            WebkitMaskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
-                        }}
+                        ref={imageWrapRef}
+                        className="relative w-full cursor-pointer"
+                        style={{ aspectRatio: "16 / 7" }}
+                        onClick={() => setShowThought((p) => !p)}
+                        role="button"
+                        tabIndex={0}
+                        aria-label="Click to see a thought about this scene"
+                        onKeyDown={(e) => { if (e.key === "Enter") setShowThought((p) => !p); }}
                     >
-                        {BANNERS.map((banner, i) => (
-                            <Image
-                                key={banner.src}
-                                src={banner.src}
-                                alt={banner.alt}
-                                fill
-                                priority={i === 0}
-                                sizes="(max-width: 800px) 100vw, 800px"
-                                draggable={false}
-                                onDragStart={(e) => e.preventDefault()}
-                                className={[
-                                    "object-cover select-none pointer-events-none",
-                                    "transition-opacity duration-700 ease-in-out",
-                                    i === current ? "opacity-100" : "opacity-0",
-                                ].join(" ")}
-                                loading="eager"
-                            />
-                        ))}
-
                         {/*
-                          Edge overlay — paints var(--color-bg-card) only on the outer 30%
-                          of the ellipse (starts at 70%), so light-mode white-wash is
-                          minimal while dark-mode edge-to-black dissolve still works.
+                          Masked image layer — `absolute inset-0` so it fills
+                          the aspect-ratio parent. overflow-hidden stays here
+                          so it doesn't clip the bubble above.
                         */}
                         <div
-                            className="absolute inset-0 pointer-events-none z-10"
+                            className="absolute inset-0 overflow-hidden"
                             style={{
-                                background: "radial-gradient(ellipse 90% 88% at 50% 50%, transparent 70%, var(--color-bg-card) 100%)",
+                                maskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
+                                WebkitMaskImage: "radial-gradient(ellipse 90% 88% at 50% 50%, black 48%, transparent 100%)",
                             }}
-                        />
+                        >
+                            {BANNERS.map((banner, i) => (
+                                <Image
+                                    key={banner.src}
+                                    src={banner.src}
+                                    alt={banner.alt}
+                                    fill
+                                    priority={i === 0}
+                                    sizes="(max-width: 800px) 100vw, 800px"
+                                    draggable={false}
+                                    onDragStart={(e) => e.preventDefault()}
+                                    className={[
+                                        "object-cover select-none pointer-events-none",
+                                        "transition-opacity duration-700 ease-in-out",
+                                        i === current ? "opacity-100" : "opacity-0",
+                                    ].join(" ")}
+                                    loading="eager"
+                                />
+                            ))}
+
+                            {/*
+                              Edge overlay — paints var(--color-bg-card) only on the outer 30%
+                              of the ellipse (starts at 70%), so light-mode white-wash is
+                              minimal while dark-mode edge-to-black dissolve still works.
+                            */}
+                            <div
+                                className="absolute inset-0 pointer-events-none z-10"
+                                style={{
+                                    background: "radial-gradient(ellipse 90% 88% at 50% 50%, transparent 70%, var(--color-bg-card) 100%)",
+                                }}
+                            />
+                        </div>
+
+                        {/*
+                          ── Thought bubble ──────────────────────────────────
+                          Sibling of the masked layer — lives outside overflow-hidden
+                          so it's never clipped. Matches the footer character's
+                          speech-bubble style exactly (same border, bg, mono font,
+                          down-pointing arrow).
+                          Dismisses on outside click or when the banner changes.
+                        */}
+                        {showThought && (
+                            <div
+                                className={[
+                                    "absolute bottom-5 left-1/2 -translate-x-1/2 z-20",
+                                    "rounded-lg border border-border bg-bg-secondary/95",
+                                    "backdrop-blur-sm px-3 py-1.5 shadow-md",
+                                    "pointer-events-none select-none",
+                                    "animate-in fade-in zoom-in-95 duration-150",
+                                ].join(" ")}
+                            >
+                                <div className="flex items-center gap-1.5">
+                                    <p className="font-mono text-xs text-text-primary whitespace-nowrap">
+                                        {BANNERS[current].thought}
+                                    </p>
+                                </div>
+                                {/* Arrow — points down toward the info strip, same as footer character */}
+                                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-b border-r border-border bg-bg-secondary" />
+                            </div>
+                        )}
                     </div>
                 </div>
 
