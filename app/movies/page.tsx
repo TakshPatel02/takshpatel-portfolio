@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 /* ── Blueprint-style poster frame ──────────────────────────────────────
-   Thin border + corner tick marks, small fixed size.
+   Thin border + corner tick marks, large proper 2:3 aspect ratio size.
    Matches the iso-fig / technical-drawing aesthetic of the site logo.
    ──────────────────────────────────────────────────────────────────── */
 function BlueprintPoster({
@@ -27,33 +27,33 @@ function BlueprintPoster({
     priority?: boolean;
 }) {
     return (
-        <div className="flex flex-col items-center gap-2.5">
-            {/* Corner-tick wrapper — p-2 gives ticks room outside the image border */}
-            <div className="relative p-2">
+        <div className="flex flex-col items-center gap-3">
+            {/* Corner-tick wrapper — p-2.5 gives ticks room outside the image border */}
+            <div className="relative p-2.5">
                 {/* Top-left */}
-                <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-text-muted/40" />
+                <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t border-l border-text-muted/40" />
                 {/* Top-right */}
-                <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-text-muted/40" />
+                <span className="absolute top-0 right-0 w-3.5 h-3.5 border-t border-r border-text-muted/40" />
                 {/* Bottom-left */}
-                <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-text-muted/40" />
+                <span className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b border-l border-text-muted/40" />
                 {/* Bottom-right */}
-                <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-text-muted/40" />
+                <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b border-r border-text-muted/40" />
 
-                {/* Poster image */}
-                <div className="relative w-30 h-45 border border-border overflow-hidden bg-[--color-surface-elevated]">
+                {/* Poster image — properly proportioned 2:3 poster size (160x240 on desktop) */}
+                <div className="relative w-36 h-54 sm:w-40 sm:h-60 border border-border overflow-hidden bg-(--color-surface-elevated) shadow-md group">
                     <Image
                         src={src}
                         alt={alt}
                         fill
-                        sizes="120px"
-                        className="object-cover"
+                        sizes="(max-width: 640px) 144px, 160px"
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                         priority={priority}
                     />
                 </div>
             </div>
 
             {/* Blueprint label beneath frame */}
-            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-text-muted/50 select-none">
+            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted/60 select-none">
                 Poster · {String(index + 1).padStart(2, "0")}
             </span>
         </div>
@@ -244,26 +244,26 @@ export default function MoviesPage() {
                                     </span>
                                 </div>
                                 
-                                {/* ── Movies Grid (Contact Sheet Style) ── */}
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-8 px-5 py-8">
+                                {/* ── Movies Grid: 3 movies per row on desktop ── */}
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-10 px-5 py-8 sm:px-8">
                                     {group.items.map((item, itemIdx) => (
                                         <div key={item.name} className="flex flex-col gap-3 group">
                                             {/* Fluid Blueprint Frame */}
-                                            <div className="relative w-full aspect-2/3 p-1.5 border border-border bg-bg-secondary/30">
+                                            <div className="relative w-full aspect-2/3 p-2 border border-border bg-bg-secondary/30">
                                                 {/* Tick marks */}
-                                                <span className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-text-muted/40" />
-                                                <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-text-muted/40" />
-                                                <span className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-text-muted/40" />
-                                                <span className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-text-muted/40" />
+                                                <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-text-muted/40" />
+                                                <span className="absolute top-0 right-0 w-2.5 h-2.5 border-t border-r border-text-muted/40" />
+                                                <span className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b border-l border-text-muted/40" />
+                                                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-text-muted/40" />
                                                 
-                                                <div className="relative w-full h-full border border-border/50 overflow-hidden bg-[--color-surface-elevated]">
+                                                <div className="relative w-full h-full border border-border/60 overflow-hidden bg-(--color-surface-elevated) shadow-sm">
                                                     <Image
                                                         src={item.posterUrl}
                                                         alt={`${item.name} poster`}
                                                         fill
-                                                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
-                                                        className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
-                                                        priority={groupIdx === 0 && itemIdx < 4}
+                                                        sizes="(max-width: 640px) 50vw, 33vw"
+                                                        className="object-cover grayscale-[0.25] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                                                        priority={groupIdx === 0 && itemIdx < 3}
                                                     />
                                                 </div>
                                             </div>
@@ -271,14 +271,14 @@ export default function MoviesPage() {
                                             {/* Info Panel */}
                                             <div className="flex flex-col gap-1.5 px-1 mt-1">
                                                 <div className="flex items-baseline justify-between gap-2 border-b border-border/50 pb-1.5">
-                                                    <span className="font-mono text-[8px] text-text-muted tracking-widest tabular-nums uppercase">
+                                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums uppercase">
                                                         FILE · {String(itemIdx + 1).padStart(2, '0')}
                                                     </span>
                                                     <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums">
                                                         {item.year}
                                                     </span>
                                                 </div>
-                                                <h4 className="font-display font-semibold text-text-primary text-xs sm:text-sm leading-snug">
+                                                <h4 className="font-display font-semibold text-text-primary text-sm sm:text-base leading-snug">
                                                     {item.name}
                                                 </h4>
                                             </div>
