@@ -80,7 +80,7 @@ const Navbar = () => {
                             TP
                         </Link>
 
-                        <div className="flex items-center justify-end gap-3">
+                        <div className="flex items-center justify-end gap-5">
                             <nav
                                 className="hidden items-center gap-6 text-sm font-medium text-text-secondary md:flex"
                                 onMouseLeave={() => setHoveredItem(null)}
@@ -206,14 +206,14 @@ const Navbar = () => {
                             {/* Theme Toggle Button */}
                             <button
                                 type="button"
-                                className="rounded-full border border-border bg-btn-bg p-2 text-text-secondary transition hover:border-border hover:text-text-primary"
+                                className="group flex h-8 w-8 items-center justify-center rounded-md text-text-secondary transition-all duration-200 hover:text-text-primary focus:outline-none"
                                 aria-label="Toggle theme"
                                 onClick={toggleTheme}
                             >
                                 {theme === "dark" ? (
-                                    <Sun className="h-4 w-4" />
+                                    <Sun className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
                                 ) : (
-                                    <Moon className="h-4 w-4" />
+                                    <Moon className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-12" />
                                 )}
                             </button>
                             {/* Mobile Hamburger Button */}
