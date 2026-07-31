@@ -44,12 +44,20 @@ const Footer = () => {
                                         </div>
                                         <div className="flex-1 text-left text-text-secondary font-mono text-xs sm:text-sm flex flex-col gap-1">
                                             <a
-                                                href="https://react.dev"
+                                                href="https://nextjs.org"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="hover:text-text-primary transition-colors"
                                             >
-                                                React JS
+                                                Next JS
+                                            </a>
+                                            <a
+                                                href="https://typescriptlang.org"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-text-primary transition-colors"
+                                            >
+                                                TypeScript
                                             </a>
                                             <a
                                                 href="https://tailwindcss.com"
