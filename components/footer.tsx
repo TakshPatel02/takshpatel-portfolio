@@ -1,5 +1,5 @@
 'use client'
-import { BookOpen, Cpu, Clapperboard } from "lucide-react";
+import { BookOpen, Cpu, Clapperboard, Lightbulb } from "lucide-react";
 import FlipLink from "./fliplink";
 import BridgeIllustration from "./bridge-illustration";
 import { siteConfig } from "@/lib/config/site-config";
@@ -276,11 +276,21 @@ const Footer = () => {
 
                                 {siteConfig.features.showMovies && (
                                     <Link
-                                        href="movies"
+                                        href="/movies"
                                         className="flex items-center gap-2 text-text-secondary hover:text-[#ff3366] transition-colors duration-200 group"
                                     >
                                         <Clapperboard size={14} className="text-text-muted group-hover:text-[#ff3366] transition-colors duration-200" />
                                         <span>Movies</span>
+                                    </Link>
+                                )}
+
+                                {siteConfig.features.showLessons && (
+                                    <Link
+                                        href="/lessons"
+                                        className="flex items-center gap-2 text-text-secondary hover:text-[#ff3366] transition-colors duration-200 group"
+                                    >
+                                        <Lightbulb size={14} className="text-text-muted group-hover:text-[#ff3366] transition-colors duration-200" />
+                                        <span>Lessons</span>
                                     </Link>
                                 )}
                             </div>
