@@ -1,9 +1,9 @@
 export const siteConfig = {
     name: "Taksh Patel",
     bio: [
-        "Ship real products, not portfolio filler — ComponentLabs (60+ open-source React components) is out and in use",
-        "Deep in Next.js and Redis right now — App Router, Server Actions, Server Components, no shortcuts",
-        "IT undergrad at GTU, building toward placements with things I've actually shipped, not just studied",
+        "Hi, I'm Taksh Patel. I'm an IT undergrad and full-stack developer.",
+        "I've published a few open-source packages — including ComponentLabs, a React component library with 60+ components — and I'm currently building a new project to help with interview prep.",
+        "I write about what I learn and ship on my blog. Check out my work below or grab my resume."
     ],
     links: {
         github: "https://github.com/takshpatel02",

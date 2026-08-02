@@ -18,8 +18,7 @@ const mainNavItems = [
 const allMoreNavItems = [
     { label: "AuthKit", to: "/authkit", flag: "showAuthkit" as const },
     { label: "Resources", to: "/resources", flag: "showResources" as const },
-    { label: "Movies", to: "/movies", flag: "showMovies" as const },
-    { label: "System", to: "/system", flag: "showSystem" as const },
+    { label: "Resume", to:"/resume"}
 ];
 
 const Navbar = () => {
