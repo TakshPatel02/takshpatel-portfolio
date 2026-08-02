@@ -51,3 +51,5 @@ Beyond standard projects and blogs, the portfolio showcases:
 - **Resources**: Curated list of technical reading materials and libraries.
 - **System**: Insight into personal development environment and setup.
 - **Movies**: A personalized cinematic catalog.
+- **Links**: Curated profile links for professional, social, and content channels.
+- **Isometric**: An archived isometric line-art hero concept and blueprint template.

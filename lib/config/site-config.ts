@@ -26,6 +26,7 @@ export const siteConfig = {
         showMovies: true,
         showSystem: true,
         showLessons: true,
+        showShowcase: true,
     },
 
     isoMetricLogo: {
