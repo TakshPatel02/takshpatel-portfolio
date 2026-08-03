@@ -16,5 +16,14 @@ export default function VisitorCount() {
         loadCount();
     }, []);
 
-    return <span>{count.toLocaleString()} visitor</span>
+    return (
+        <div className="flex items-baseline gap-2 whitespace-nowrap">
+            <span className="font-mono text-sm font-bold text-text-primary tabular-nums">
+                {String(count).padStart(3, "0")}
+            </span>
+            <span className="font-mono text-[10px] text-text-muted">
+                Live
+            </span>
+        </div>
+    );
 }

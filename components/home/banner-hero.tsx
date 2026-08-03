@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { BANNERS, SLOT_END_HOURS } from "@/lib/data/banner-hero";
+import VisitorCount from "@/components/visitor-count";
 
 // ── Slot names (matched to BANNERS index order) ──────────────────────
 const SLOT_NAMES = ["Morning", "Afternoon", "Evening", "Night", "Late Night"] as const;
@@ -203,14 +204,14 @@ const BannerHero = () => {
 
 
                 {/* ── Info strip ── */}
-                <div className="flex items-stretch divide-x divide-border border-t border-border select-none">
+                <div className="grid grid-cols-2 sm:grid-cols-3 border-t border-border select-none">
 
                     {/* Left — current frame */}
-                    <div className="flex-1 px-5 py-3.5 flex flex-col gap-1">
-                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted">
+                    <div className="col-span-1 border-r border-b sm:border-b-0 border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted whitespace-nowrap">
                             // Current Frame
                         </span>
-                        <div className="flex items-baseline gap-2">
+                        <div className="flex items-baseline gap-2 whitespace-nowrap">
                             <span className="font-display text-sm font-bold text-text-primary">
                                 {String(current + 1).padStart(2, "0")}
                             </span>
@@ -221,11 +222,11 @@ const BannerHero = () => {
                     </div>
 
                     {/* Right — next frame countdown */}
-                    <div className="flex-1 px-5 py-3.5 flex flex-col gap-1">
-                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted">
+                    <div className="col-span-2 sm:col-span-1 order-3 sm:order-2 sm:border-r border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted whitespace-nowrap">
                             // Next Frame In
                         </span>
-                        <div className="flex items-baseline gap-2">
+                        <div className="flex items-baseline gap-2 whitespace-nowrap">
                             {countdown ? (
                                 <>
                                     <span className="font-mono text-sm font-bold text-text-primary tabular-nums">
@@ -239,6 +240,14 @@ const BannerHero = () => {
                                 <span className="font-mono text-[10px] text-text-muted">—</span>
                             )}
                         </div>
+                    </div>
+
+                    {/* Visitors */}
+                    <div className="col-span-1 order-2 sm:order-3 border-b sm:border-b-0 border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted whitespace-nowrap">
+                            // Visitors
+                        </span>
+                        <VisitorCount />
                     </div>
 
                 </div>
