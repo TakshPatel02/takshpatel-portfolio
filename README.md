@@ -51,13 +51,14 @@
 
 ### 🏠 Home Page (`/`)
 1. **Hero Panel (`hero-panel.tsx`)**: Avatar badge, live status beacon, local live clock (`live-clock.tsx`), 3D Isometric TP logo (`iso-metric-logo.tsx`), and tagline.
-2. **01 // BIO (`intro-section.tsx`)**: Bio bullet points, social media links, PDF resume CTA, and live GitHub contribution activity graph (`github-activity.tsx`).
-3. **02 // LANGUAGES (`tech-stack.tsx`)**: Categorized tech stack (Frontend, Backend, Databases, Tools) with dark-invert asset support.
-4. **03 // BUILDS (`project-section.tsx`)**: App Window Showcase featuring `projectType` tags, live preview mockups (`● ● ●`), live URLs, and GitHub links.
-5. **04 // MODULES (`npm-packages.tsx`)**: Open-source npm packages with live shields.io badges and one-click copy install commands (`copy-button.tsx`).
-6. **05 // UI LAB (`component-labs.tsx`)**: Curated slice of 60+ open-source React components with category color tagging.
-7. **06 // WRITINGS (`blog-section.tsx`)**: Latest blog posts fetched dynamically from Firebase Realtime Database.
-8. **07 // LEARNINGS (`tech-resources.tsx`)**: Curated list of educators, courses, and key learning references with honest takeaways.
+2. **Banner Hero (`banner-hero.tsx`)**: Time-of-day dynamic banner image with an info strip showing current frame, next frame countdown, and optional visitor count.
+3. **01 // BIO (`intro-section.tsx`)**: Bio bullet points, social media links, PDF resume CTA, and live GitHub contribution activity graph (`github-activity.tsx`).
+4. **02 // LANGUAGES (`tech-stack.tsx`)**: Categorized tech stack (Frontend, Backend, Databases, Tools) with dark-invert asset support.
+5. **03 // BUILDS (`project-section.tsx`)**: App Window Showcase featuring `projectType` tags, live preview mockups (`● ● ●`), live URLs, and GitHub links.
+6. **04 // MODULES (`npm-packages.tsx`)**: Open-source npm packages with live shields.io badges and one-click copy install commands (`copy-button.tsx`).
+7. **05 // UI LAB (`component-labs.tsx`)**: Curated slice of 60+ open-source React components with category color tagging.
+8. **06 // WRITINGS (`blog-section.tsx`)**: Latest blog posts fetched dynamically from Firebase Realtime Database. Controlled by `showBlogs` flag.
+9. **07 // LEARNINGS (`tech-resources.tsx`)**: Curated list of educators, courses, and key learning references with honest takeaways.
 
 ### 📁 Projects (`/projects`)
 - Client search & filtering (`project-page-client.tsx`, `project-header.tsx`).
@@ -127,6 +128,7 @@ takshpatel-portfolio/
 │   │   ├── blog-header.tsx
 │   │   └── blog-page-client.tsx
 │   ├── home/                   # Home Section Components
+│   │   ├── banner-hero.tsx
 │   │   ├── blog-section.tsx
 │   │   ├── component-labs.tsx
 │   │   ├── github-activity.tsx
@@ -149,11 +151,13 @@ takshpatel-portfolio/
 │   ├── copy-button.tsx         # One-click copy utility button
 │   ├── fliplink.tsx            # Animated flip text link component
 │   ├── footer.tsx              # Footer layout & bridge illustration host
-│   ├── navbar.tsx              # Navigation bar with View Transitions theme toggle
+│   ├── navbar.tsx              # Navigation bar with feature-flag-driven links
 │   ├── scroll-to-top.tsx       # Floating scroll-to-top button
 │   ├── section-divider.tsx     # Hairline section divider bar
 │   ├── smooth-scroll-provider.tsx # Lenis smooth scrolling provider
-│   └── theme-provider.tsx      # Theme context & view transition handler
+│   ├── theme-provider.tsx      # Theme context & view transition handler
+│   ├── visitor-count.tsx       # Displays total visitor count from Redis
+│   └── visitor-tracker.tsx     # Fires POST to /api/visitor on page load (Redis INCR)
 ├── lib/                        # Utilities & Data Specifications
 │   ├── config/                 # Site configuration & Firebase options
 │   │   ├── firebase-config.ts
@@ -175,7 +179,8 @@ takshpatel-portfolio/
 │   │   ├── tech-resources.ts
 │   │   └── tech-stack.ts
 │   ├── soundcn/                # Sound effect assets & handlers
-│   └── firebase.ts             # Firebase Realtime Database API getters
+│   ├── firebase.ts             # Firebase Realtime Database API getters
+│   └── redis.ts                # Upstash Redis client (visitor counter)
 ├── public/                     # Static assets, fonts, & PDF resume
 ├── package.json                # Project dependencies & scripts
 ├── README.md                   # Project documentation
@@ -192,6 +197,7 @@ takshpatel-portfolio/
 | **Library** | [React 19](https://react.dev/) / React DOM 19 |
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com/), Vanilla CSS Tokens |
 | **Database & CMS** | [Firebase Realtime Database](https://firebase.google.com/) |
+| **Cache / Counter** | [Upstash Redis](https://upstash.com/) (visitor counter — optional via `showVisitorCount` flag) |
 | **Animations** | [Framer Motion 12](https://www.framer.com/motion/), [Lenis Scroll](https://lenis.darkroom.engineering/) |
 | **Icons** | [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/) |
 | **Markdown & Syntax**| `react-markdown`, `rehype-highlight`, `remark-gfm`, `highlight.js` |

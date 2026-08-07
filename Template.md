@@ -192,16 +192,30 @@ If you don't need certain sections (such as AuthKit documentation, Component Lab
 
 ```typescript
 features: {
-    showComponents: true,  // Toggle Component Labs section
-    showNpmPackages: true, // Toggle NPM Packages section
-    showAuthkit: false,    // Set to false to disable AuthKit page
-    showResources: true,   // Toggle How I Learned / Resources page
-    showMovies: true,      // Toggle Movies page
-    showSystem: true,      // Toggle System setup page
+    showIsoMetricLogo: false,  // Toggle 3D isometric TP logo in hero panel
+    showComponents: true,      // Toggle Component Labs section on home page
+    showNpmPackages: true,     // Toggle NPM Packages section on home page
+    showAuthkit: false,        // Set to false to disable AuthKit page & nav link
+    showResources: true,       // Toggle How I Learned / Resources page & nav link
+    showMovies: true,          // Toggle Movies page
+    showSystem: true,          // Toggle System setup page
+    showLessons: true,         // Toggle Lessons section
+    showShowcase: true,        // Toggle Showcase page & nav link
+    showBlogs: true,           // Toggle Blog section on home page & Blog nav link
+    showVisitorCount: true,    // Toggle visitor counter in the hero banner info strip
 }
 ```
 
-Setting a feature flag to `false` automatically hides it from the navigation bar, home page, and redirects the page route cleanly.
+Setting a feature flag to `false` automatically hides it from the navigation bar, home page sections, and stops any related background work.
+
+> [!IMPORTANT]
+> **`showVisitorCount` and Redis**: The visitor counter is powered by an **Upstash Redis** database. When `showVisitorCount` is set to `false`, the `VisitorTracker` component is completely removed from the layout — meaning **no Redis reads or writes are made at all**. If you do not have Redis configured, keep this flag set to `false` to avoid runtime errors.
+>
+> To enable it, add the following environment variables from your [Upstash Console](https://console.upstash.com/):
+> ```env
+> UPSTASH_REDIS_REST_URL=https://your-redis-url.upstash.io
+> UPSTASH_REDIS_REST_TOKEN=your-token-here
+> ```
 
 ---
 
@@ -262,13 +276,41 @@ Every section has a corresponding TypeScript data file located under **`lib/data
 
 ### Deploying to Vercel (Recommended)
 
-1. Push your repository to **GitHub**.
-2. Go to [Vercel](https://vercel.com/) and click **Add New Project**.
-3. Import your portfolio repository.
-4. Add Environment Variables (if using Firebase):
-   - Key: `FIREBASE_DATABASE_URL`
-   - Value: `https://your-firebase-database-url.firebaseio.com`
-5. Click **Deploy**.
+1. **Push your repository to GitHub.**
+
+2. **Go to [Vercel](https://vercel.com/)**, click **Add New Project**, and import your portfolio repository.
+
+3. **Configure Environment Variables** in the Vercel dashboard under **Settings → Environment Variables**.  
+   Add only the variables that match the features you have enabled:
+
+   | Variable | Required? | Description |
+   | :--- | :---: | :--- |
+   | `FIREBASE_DATABASE_URL` | If `showBlogs: true` or using Firebase for projects | Your Firebase Realtime Database URL (e.g. `https://your-project-default-rtdb.firebaseio.com`) |
+   | `UPSTASH_REDIS_REST_URL` | If `showVisitorCount: true` | REST URL from your [Upstash Console](https://console.upstash.com/) |
+   | `UPSTASH_REDIS_REST_TOKEN` | If `showVisitorCount: true` | REST token from your [Upstash Console](https://console.upstash.com/) |
+
+   > [!TIP]
+   > If you are **not** using Firebase or Redis, simply leave those variables empty and set the corresponding feature flags to `false` in `site-config.ts`. The app will build and run without them.
+
+4. **Click Deploy.**
+
+---
+
+### Environment Variable Reference
+
+Here is the full `.env.local` template for local development:
+
+```env
+# ── Firebase (required only if showBlogs: true or using Firebase for projects)
+FIREBASE_DATABASE_URL=https://your-project-default-rtdb.firebaseio.com
+
+# ── Upstash Redis (required only if showVisitorCount: true)
+UPSTASH_REDIS_REST_URL=https://your-redis-url.upstash.io
+UPSTASH_REDIS_REST_TOKEN=your-token-here
+```
+
+> [!CAUTION]
+> Never commit your `.env.local` file to version control. It is already included in `.gitignore`. Always add secrets via the Vercel dashboard for production deployments.
 
 ---
 
