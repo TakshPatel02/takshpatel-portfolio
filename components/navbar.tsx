@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const mainNavItems = [
     { label: "Home", to: "/" },
     { label: "Projects", to: "/projects" },
-    { label: "Blog", to: "/blog" },
+    { label: "Blog", to: "/blog", flag: "showBlogs" as const },
 ];
 
 // Additional items shown inside the "More" dropdown menu
@@ -30,6 +30,11 @@ const Navbar = () => {
     const pathname = usePathname();
 
     const moreRef = useRef<HTMLDivElement>(null);
+
+    // Filter main nav items based on feature flags in site-config
+    const mainNavItemsFiltered = mainNavItems.filter(
+        (item) => !item.flag || siteConfig.features[item.flag]
+    );
 
     // Filter "More" items based on feature flags in site-config
     const moreNavItems = allMoreNavItems.filter(
@@ -86,7 +91,7 @@ const Navbar = () => {
                                 onMouseLeave={() => setHoveredItem(null)}
                             >
                                 {/* Main Nav Links */}
-                                {mainNavItems.map((item) => {
+                                {mainNavItemsFiltered.map((item) => {
                                     const isActive = pathname === item.to;
                                     const showDot = hoveredItem
                                         ? hoveredItem === item.to
@@ -247,7 +252,7 @@ const Navbar = () => {
                                 <div className="rounded-2xl border border-border bg-bg-secondary/95 p-4 shadow-xl backdrop-blur-lg">
                                     <div className="flex flex-col gap-2 text-sm font-medium text-text-secondary">
                                         {/* Main Nav Items on Mobile */}
-                                        {mainNavItems.map((item, i) => {
+                                        {mainNavItemsFiltered.map((item, i) => {
                                             const isActive = pathname === item.to;
                                             return (
                                                 <motion.div

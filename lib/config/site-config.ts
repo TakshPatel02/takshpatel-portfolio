@@ -27,7 +27,8 @@ export const siteConfig = {
         showSystem: true,
         showLessons: true,
         showShowcase: true,
-    },
+        showBlogs: true,
+        },
 
     isoMetricLogo: {
         firstChar: [

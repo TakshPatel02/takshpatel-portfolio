@@ -32,8 +32,12 @@ export default function Home() {
           <SectionDivider />
         </>
       )}
-      <BlogSection />
-      <SectionDivider />
+      {siteConfig.features.showBlogs && (
+        <>
+          <BlogSection />
+          <SectionDivider />
+        </>
+      )}
       {siteConfig.features.showResources && (
         <>
           <TechResources />
