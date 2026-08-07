@@ -28,7 +28,7 @@ export const siteConfig = {
         showLessons: true,
         showShowcase: true,
         showBlogs: true,
-        showVisitorCount: false
+        showVisitorCount: true
     },
 
     isoMetricLogo: {
