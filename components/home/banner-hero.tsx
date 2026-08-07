@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { BANNERS, SLOT_END_HOURS } from "@/lib/data/banner-hero";
 import VisitorCount from "@/components/visitor-count";
+import { siteConfig } from "@/lib/config/site-config";
 
 // ── Slot names (matched to BANNERS index order) ──────────────────────
 const SLOT_NAMES = ["Morning", "Afternoon", "Evening", "Night", "Late Night"] as const;
@@ -204,7 +205,7 @@ const BannerHero = () => {
 
 
                 {/* ── Info strip ── */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 border-t border-border select-none">
+                <div className={`grid grid-cols-2 ${siteConfig.features.showVisitorCount ? "sm:grid-cols-3" : "sm:grid-cols-2" } border-t border-border select-none`}>
 
                     {/* Left — current frame */}
                     <div className="col-span-1 border-r border-b sm:border-b-0 border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
@@ -243,12 +244,14 @@ const BannerHero = () => {
                     </div>
 
                     {/* Visitors */}
-                    <div className="col-span-1 order-2 sm:order-3 border-b sm:border-b-0 border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
-                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted whitespace-nowrap">
+                    {siteConfig.features.showVisitorCount && (
+                        <div className="col-span-1 order-2 sm:order-3 border-b sm:border-b-0 border-border px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col gap-1">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted whitespace-nowrap">
                             // Visitors
-                        </span>
-                        <VisitorCount />
-                    </div>
+                            </span>
+                            <VisitorCount />
+                        </div>
+                    )}
 
                 </div>
             </div>

@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import SmoothScrollProvider from "@/components/smooth-scroll-provider";
 import { Analytics } from '@vercel/analytics/next';
 import VisitorTracker from "@/components/visitor-tracker";
+import { siteConfig } from "@/lib/config/site-config";
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -49,7 +50,7 @@ export default async function RootLayout({
         <ThemeProvider initialTheme={theme}>
           <SmoothScrollProvider>
             <Navbar />
-            <VisitorTracker />
+            {siteConfig.features.showVisitorCount && <VisitorTracker />}
             {children}
             <Analytics />
             <Footer />
