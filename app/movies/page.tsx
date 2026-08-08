@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { movies, favorites } from "@/lib/data/movies";
 import SectionDivider from "@/components/section-divider";
 import { siteConfig } from "@/lib/config/site-config";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import FavoritesGrid from "@/components/home/favorites-grid";
 
 export const metadata: Metadata = {
     title: `Movies · ${siteConfig.name}`,
@@ -231,62 +232,8 @@ export default function MoviesPage() {
                             </p>
                         </div>
 
-                        {/* ── Categories ── */}
-                        {favorites.map((group, groupIdx) => (
-                            <div key={group.category} className={groupIdx < favorites.length - 1 ? "border-b border-border" : ""}>
-                                {/* Category Header */}
-                                <div className="border-b border-border px-5 py-3 bg-(--color-surface-elevated)/40 flex items-center justify-between">
-                                    <h3 className="font-mono text-[11px] uppercase tracking-widest text-text-secondary">
-                                        {group.category}
-                                    </h3>
-                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums">
-                                        {group.items.length}
-                                    </span>
-                                </div>
-                                
-                                {/* ── Movies Grid: 3 movies per row on desktop ── */}
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-10 px-5 py-8 sm:px-8">
-                                    {group.items.map((item, itemIdx) => (
-                                        <div key={item.name} className="flex flex-col gap-3 group">
-                                            {/* Fluid Blueprint Frame */}
-                                            <div className="relative w-full aspect-2/3 p-2 border border-border bg-bg-secondary/30">
-                                                {/* Tick marks */}
-                                                <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-text-muted/40" />
-                                                <span className="absolute top-0 right-0 w-2.5 h-2.5 border-t border-r border-text-muted/40" />
-                                                <span className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b border-l border-text-muted/40" />
-                                                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-text-muted/40" />
-                                                
-                                                <div className="relative w-full h-full border border-border/60 overflow-hidden bg-(--color-surface-elevated) shadow-sm">
-                                                    <Image
-                                                        src={item.posterUrl}
-                                                        alt={`${item.name} poster`}
-                                                        fill
-                                                        sizes="(max-width: 640px) 50vw, 33vw"
-                                                        className="object-cover grayscale-[0.25] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                                                        priority={groupIdx === 0 && itemIdx < 3}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            {/* Info Panel */}
-                                            <div className="flex flex-col gap-1.5 px-1 mt-1">
-                                                <div className="flex items-baseline justify-between gap-2 border-b border-border/50 pb-1.5">
-                                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums uppercase">
-                                                        FILE · {String(itemIdx + 1).padStart(2, '0')}
-                                                    </span>
-                                                    <span className="font-mono text-[9px] text-text-muted tracking-widest tabular-nums">
-                                                        {item.year}
-                                                    </span>
-                                                </div>
-                                                <h4 className="font-display font-semibold text-text-primary text-sm sm:text-base leading-snug">
-                                                    {item.name}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+                        {/* ── Categories (interactive client component) ── */}
+                        <FavoritesGrid groups={favorites} />
 
                     </div>
                 </div>

@@ -63,6 +63,8 @@ export interface FavoriteEntry {
     name: string;
     year: number;
     posterUrl: string;
+    rating: number; // out of 10 — update to your personal rating
+    description: string; // short 1–2 sentence blurb shown in the popup
 }
 
 export interface FavoriteGroup {
@@ -74,29 +76,29 @@ export const favorites: FavoriteGroup[] = [
     {
         category: "Hollywood",
         items: [
-            { name: "Avengers: Endgame", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876474/endgame_xndybc.jpg" },
-            { name: "Top Gun", year: 1986, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/topgun_gytzwq.jpg" },
-            { name: "Top Gun: Maverick", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/maverik_y2ljfb.jpg" },
-            { name: "Mission Impossible", year: 1996, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/mission-impossible_efmjqj.jpg" },
-            { name: "Battleship", year: 2012, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876865/battleship_izt8cu.jpg" }
+            { name: "Avengers: Endgame", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876474/endgame_xndybc.jpg", rating: 9.5, description: "The Avengers travel through time to undo Thanos's snap and restore half the universe. The ultimate MCU payoff." },
+            { name: "Top Gun", year: 1986, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/topgun_gytzwq.jpg", rating: 8.5, description: "A hotshot Navy pilot pushes his limits at the elite Top Gun academy. Pure 80s action energy." },
+            { name: "Top Gun: Maverick", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/maverik_y2ljfb.jpg", rating: 9.2, description: "Maverick returns to train a new generation for a near-impossible mission. A rare sequel that surpasses the original." },
+            { name: "Mission Impossible", year: 1996, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/mission-impossible_efmjqj.jpg", rating: 8.8, description: "IMF agent Ethan Hunt is framed for the deaths of his team and must uncover a mole to clear his name." },
+            { name: "Battleship", year: 2012, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876865/battleship_izt8cu.jpg", rating: 7.8, description: "Naval officers face an alien invasion in the Pacific Ocean. Loud, fun, and unapologetically over the top." }
         ],
     },
     {
         category: "Series",
         items: [
-            { name: "Money Heist", year: 2017, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/money-heist_r7fuz2.jpg" },
-            { name: "Game of Thrones", year: 2011, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876568/gameofthrones_yosars.jpg" },
-            { name: "The Night Agent", year: 2023, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876866/thenightagent_u2pd9n.jpg" }
+            { name: "Money Heist", year: 2017, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876473/money-heist_r7fuz2.jpg", rating: 9.3, description: "A criminal mastermind orchestrates the most elaborate heist in history, targeting the Royal Mint of Spain." },
+            { name: "Game of Thrones", year: 2011, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876568/gameofthrones_yosars.jpg", rating: 9.0, description: "Noble families wage war for the Iron Throne while an ancient threat stirs beyond the Wall." },
+            { name: "The Night Agent", year: 2023, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876866/thenightagent_u2pd9n.jpg", rating: 8.4, description: "An FBI agent manning a crisis hotline is pulled into a high-stakes conspiracy that reaches the White House." }
         ],
     },
     {
         category: "Anime",
         items: [
-            { name: "That Time I Got Reincarnated as a Slime", year: 2018, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/slime_kshfsn.jpg" },
-            { name: "Dr. Stone", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/destone_klz6hq.jpg" },
-            { name: "Solo Leveling", year: 2024, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/sololeveling_wvs6a9.jpg" },
-            { name: "Ao Ashi", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/aoashi_wvxejd.jpg" },
-            { name: "Shin Chan", year: 1992, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/shinchan_akoad6.jpg" },
+            { name: "That Time I Got Reincarnated as a Slime", year: 2018, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/slime_kshfsn.jpg", rating: 8.7, description: "A Tokyo salaryman is reincarnated as a slime in a fantasy world and builds a nation of monsters." },
+            { name: "Dr. Stone", year: 2019, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/destone_klz6hq.jpg", rating: 8.9, description: "After humanity is petrified for millennia, a genius teen uses science to rebuild civilization from scratch." },
+            { name: "Solo Leveling", year: 2024, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876471/sololeveling_wvs6a9.jpg", rating: 9.1, description: "The world's weakest hunter gains a unique power that lets him level up infinitely and grow beyond all limits." },
+            { name: "Ao Ashi", year: 2022, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/aoashi_wvxejd.jpg", rating: 8.6, description: "A raw-talented boy from a small town fights his way into a top football academy, learning to see the game differently." },
+            { name: "Shin Chan", year: 1992, posterUrl: "https://res.cloudinary.com/portfolioblog/image/upload/v1784876472/shinchan_akoad6.jpg", rating: 9.4, description: "A mischievous five-year-old and his eccentric family navigate everyday life with absurd, hilarious results." },
         ],
     },
 ]
