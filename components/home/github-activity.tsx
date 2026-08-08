@@ -20,20 +20,25 @@ const GithubActivity = () => {
         <>
             <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
                 <div className="border-x border-border bg-bg-card px-5 py-4">
-                    <div className="flex justify-center overflow-x-auto">
+                    {/*
+                      blockSize={10} blockMargin={2} → each column = 12px
+                      53 weeks × 12px = 636px, fits comfortably in the ~720px content area.
+                      No scrollbar needed — the full year is always visible.
+                    */}
+                    <div className="flex justify-center w-full">
                         <GitHubCalendar
                             username={siteConfig.githubUsername}
                             colorScheme={theme === "dark" ? "dark" : "light"}
                             theme={calendarTheme}
                             fontSize={14}
-                            blockSize={13}
+                            blockSize={11}
                             blockMargin={2}
                         />
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default GithubActivity
+export default GithubActivity;
