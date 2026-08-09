@@ -29,8 +29,54 @@ const tiny5 = Tiny5({
 });
 
 export const metadata: Metadata = {
-  title: "Taksh Patel | Full Stack Developer",
-  description: "Taksh Patel is a full stack developer skilled in React, Tailwind, GSAP, Node.js, MongoDB and PostgreSQL. Building modern, high-performance web applications.",
+  metadataBase: new URL(siteConfig.seo.url),
+
+  title: {
+    default: siteConfig.seo.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+
+  description: siteConfig.seo.description,
+
+  keywords: siteConfig.seo.keywords,
+
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+
+  category: "Technology",
+
+  openGraph: {
+    type: "website",
+    url: siteConfig.seo.url,
+    siteName: siteConfig.name,
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [
+      { 
+        url: siteConfig.seo.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} Portfolio`
+      }
+    ]
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [siteConfig.seo.ogImage],
+    creator: `@${siteConfig.links.x.split("/").pop()}`,
+  },
+
+  formatDetection: { 
+    email: false, 
+    address: false, 
+    telephone: false 
+  },
+
+  referrer: "origin-when-cross-origin",
 };
 
 export default async function RootLayout({

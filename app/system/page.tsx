@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config/site-config";
 
 export const metadata: Metadata = {
-    title: `System · ${siteConfig.name}`,
+    title: `System`,
     description: "The hardware, tools, and setup behind how I build.",
 };
 

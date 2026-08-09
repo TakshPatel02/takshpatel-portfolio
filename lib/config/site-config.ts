@@ -5,6 +5,24 @@ export const siteConfig = {
         "I've published a few open-source packages — including ComponentLabs, a React component library with 60+ components — and I'm currently building a new project to help with interview prep.",
         "I write about what I learn and ship on my blog. Check out my work below or grab my resume."
     ],
+
+    seo: {
+        title: "Taksh Patel | Full Stack Developer",
+        description: "Taksh Patel is a full stack developer skilled in React, Next.js, Tailwind, Node.js, MongoDB and PostgreSQL. Building modern, high-performance web applications and open-source tools.",
+        url: "https://takshpatel.vercel.app",
+        ogImage: "https://res.cloudinary.com/portfolioblog/image/upload/v1772124137/ghibli_by7gu7.webp",
+        keywords: [
+            "Taksh Patel",
+            "Full Stack Developer",
+            "Next.js Developer",
+            "React Developer",
+            "Typescript",
+            "Portfolio",
+            "Open Source",
+            "Web Developer",
+        ]
+    },
+
     links: {
         github: "https://github.com/takshpatel02",
         linkedin: "https://linkedin.com/in/taksh-patel20",

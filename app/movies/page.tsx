@@ -7,7 +7,7 @@ import Image from "next/image";
 import FavoritesGrid from "@/components/home/favorites-grid";
 
 export const metadata: Metadata = {
-    title: `Movies · ${siteConfig.name}`,
+    title: `Movies`,
     description:
         "I don't just watch movies for entertainment — even something like a superhero film leaves me with a real takeaway. Some stories stick with me longer than others.",
 };

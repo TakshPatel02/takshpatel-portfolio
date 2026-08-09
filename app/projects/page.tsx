@@ -4,7 +4,7 @@ import { getProjects } from "@/lib/firebase";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: `Projects · ${siteConfig.name}`,
+    title: `Projects`,
     description: "A collection of my personal and professional projects, showcasing my skills and experience in software development."
 }
 

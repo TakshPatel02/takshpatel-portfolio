@@ -4,7 +4,7 @@ import { getBlogs } from "@/lib/firebase";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: `Blogs · ${siteConfig.name}`,
+    title: `Blogs`,
     description: `Read the latest blogs and articles on ${siteConfig.name}. Stay updated with our insights, tips, and stories.`,
 }
 

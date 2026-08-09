@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { lessons } from "@/lib/data/lessons";
 
 export const metadata: Metadata = {
-    title: `Lessons · ${siteConfig.name}`,
+    title: `Lessons`,
     description: "Things that went wrong before they went right.",
 };
 

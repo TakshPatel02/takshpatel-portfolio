@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/config/site-config";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-    title: `Resources · ${siteConfig.name}`,
+    title: `Resources`,
     description:
         "Creators and courses that shaped how I build — with honest notes on what worked, what didn't, and what's still in progress.",
 };

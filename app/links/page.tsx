@@ -7,7 +7,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiHashnode } from "react-icons/si";
 
 export const metadata: Metadata = {
-    title: `Links · ${siteConfig.name}`,
+    title: `Links`,
     description: "Building for the web, learning every layer, shipping what matters.",
 };
 
