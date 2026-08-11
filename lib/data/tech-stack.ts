@@ -57,6 +57,11 @@ export const techCategories : TechCategory[] = [
                 invertInDark: true,
             },
             {
+                name: "Next.js",
+                icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+                invertInDark: true,
+            },
+            {
                 name: "Component-Labs",
                 icon: "Boxes",
                 invertInDark: false,
