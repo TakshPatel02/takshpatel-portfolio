@@ -22,7 +22,7 @@ export default function VisitorCount() {
                 {String(count).padStart(3, "0")}
             </span>
             <span className="font-mono text-[10px] text-text-muted">
-                Live
+                Visited
             </span>
         </div>
     );
