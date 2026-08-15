@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import GithubActivity from "./github-activity";
 import { siteConfig } from "@/lib/config/site-config";
+import NowTeaser from "./now-teaser";
 
-const IntroSection = () => {
+const IntroSection = async () => {
   return (
     <section className="w-full">
       {/* ── 01 // BIO Header Box ── */}
@@ -35,6 +36,9 @@ const IntroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* ── Now Teaser ── */}
+      <NowTeaser />
 
       {/* ── All Links Route Box (Replaces socials on homepage) ── */}
       <div className="w-full border-b border-border">

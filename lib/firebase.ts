@@ -3,6 +3,41 @@ import type { Project } from "./data/projects";
 import type { Blog } from "./data/blogs";
 import { staticProjects } from "./data/projects";
 import { staticBlogs } from "./data/blogs";
+
+export interface RecentlyCompletedItem {
+    title: string;
+    description: string;
+    githubUrl?: string;
+    liveUrl?: string;
+}
+
+export interface NowData {
+    currentlyDoing: string[];
+    lastUpdated: string;
+    recentlyCompleted: RecentlyCompletedItem[];
+}
+
+export async function getNowData(): Promise<NowData | null> {
+    try {
+        const response = await fetch(`${firebaseConfig.databaseURL}/now.json`, {
+            next: { revalidate: 60 },
+        });
+        if (!response.ok) throw new Error("Failed to fetch now data from Firebase");
+
+        const data = await response.json();
+        if (!data) return null;
+
+        return {
+            currentlyDoing: Array.isArray(data.currentlyDoing) ? data.currentlyDoing : [],
+            lastUpdated: data.lastUpdated ?? "",
+            recentlyCompleted: Array.isArray(data.recentlyCompleted)
+                ? data.recentlyCompleted
+                : Object.values(data.recentlyCompleted ?? {}),
+        } as NowData;
+    } catch {
+        return null;
+    }
+}
 import { readFile } from "fs/promises";
 import path from "path";
 
