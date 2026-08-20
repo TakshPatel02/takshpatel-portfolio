@@ -3,7 +3,7 @@ import { getNowData } from "@/lib/firebase";
 
 export default async function NowTeaser() {
     const data = await getNowData();
-    const items = (data?.currentlyDoing ?? []).slice(0, 2);
+    const items = (data?.currentlyDoing ?? []).slice(0, 1);
 
     if (items.length === 0) return null;
 
