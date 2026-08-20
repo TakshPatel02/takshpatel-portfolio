@@ -1,23 +1,20 @@
 import { firebaseConfig } from "./config/firebase-config";
 import type { Project } from "./data/projects";
 import type { Blog } from "./data/blogs";
+import type { NowData } from "./data/now-section";
 import { staticProjects } from "./data/projects";
 import { staticBlogs } from "./data/blogs";
-
-export interface RecentlyCompletedItem {
-    title: string;
-    description: string;
-    githubUrl?: string;
-    liveUrl?: string;
-}
-
-export interface NowData {
-    currentlyDoing: string[];
-    lastUpdated: string;
-    recentlyCompleted: RecentlyCompletedItem[];
-}
+import { staticNowData } from "./data/now-section";
+import { readFile } from "fs/promises";
+import path from "path";
 
 export async function getNowData(): Promise<NowData | null> {
+    const useFirebase = !!process.env.FIREBASE_DATABASE_URL;
+
+    if (!useFirebase) {
+        return staticNowData;
+    }
+
     try {
         const response = await fetch(`${firebaseConfig.databaseURL}/now.json`, {
             next: { revalidate: 60 },
@@ -25,7 +22,7 @@ export async function getNowData(): Promise<NowData | null> {
         if (!response.ok) throw new Error("Failed to fetch now data from Firebase");
 
         const data = await response.json();
-        if (!data) return null;
+        if (!data) return staticNowData;
 
         return {
             currentlyDoing: Array.isArray(data.currentlyDoing) ? data.currentlyDoing : [],
@@ -35,11 +32,9 @@ export async function getNowData(): Promise<NowData | null> {
                 : Object.values(data.recentlyCompleted ?? {}),
         } as NowData;
     } catch {
-        return null;
+        return staticNowData;
     }
 }
-import { readFile } from "fs/promises";
-import path from "path";
 
 export async function getBlogs(): Promise<Blog[]> {
     const useFirebase = !!process.env.FIREBASE_DATABASE_URL;
