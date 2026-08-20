@@ -37,8 +37,10 @@ const IntroSection = async () => {
         </div>
       </div>
 
-      {/* ── Now Teaser ── */}
-      <NowTeaser />
+      {siteConfig.features.showNowSection && (
+        // ── Now Teaser ── 
+        <NowTeaser />
+      )}
 
       {/* ── All Links Route Box (Replaces socials on homepage) ── */}
       <div className="w-full border-b border-border">
