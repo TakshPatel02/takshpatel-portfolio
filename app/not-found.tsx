@@ -1,106 +1,186 @@
-'use client'
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import SectionDivider from "@/components/section-divider";
+import { FolderGit2, BookOpen, FileText, Home, Link2, ExternalLink } from "lucide-react";
 
-const PageNotFound = () => {
+export default function PageNotFound() {
+  const routes = [
+    {
+      title: "Home",
+      subtitle: "Overview, bio, tech stack & featured work",
+      href: "/",
+      icon: <Home size={16} />,
+      label: "HOME",
+    },
+    {
+      title: "Projects",
+      subtitle: "All applications, tools, and open-source packages",
+      href: "/projects",
+      icon: <FolderGit2 size={16} />,
+      label: "WORK",
+    },
+    {
+      title: "Blog",
+      subtitle: "Technical articles, guides, and engineering learnings",
+      href: "/blog",
+      icon: <BookOpen size={16} />,
+      label: "POSTS",
+    },
+    {
+      title: "Resume",
+      subtitle: "Official curriculum vitae and technical experience",
+      href: "/resume",
+      icon: <FileText size={16} />,
+      label: "CV",
+    },
+    {
+      title: "All Links",
+      subtitle: "Social profiles, GitHub, LinkedIn, and contact",
+      href: "/links",
+      icon: <Link2 size={16} />,
+      label: "LINKS",
+    },
+  ];
+
   return (
-    <div className="flex flex-col bg-bg-primary">
-      {/* Hero Section with Dot Pattern */}
-      <div className="w-full border-b border-border">
-        <section className="mx-auto w-full max-w-200 px-4 sm:px-6">
+    <main className="w-full">
+      {/* ── Page Header ── */}
+      <div className="w-full">
+        <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
+          <div className="border-x border-border bg-bg-card px-5 py-6 sm:py-8">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted block mb-2">
+              Error 404
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-bold text-text-primary mb-3">
+              Page Not Found
+            </h1>
+            <p className="text-sm sm:text-base text-text-muted leading-relaxed max-w-2xl">
+              The route you requested doesn't exist, was moved, or is temporarily unavailable. Check the URL or pick one of the active pages below.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <SectionDivider />
+
+      {/* ── Diagnostics & Active Routes ── */}
+      <div className="w-full">
+        <div className="mx-auto w-full max-w-200 px-4 sm:px-6">
           <div className="border-x border-border bg-bg-card">
-            <div
-              className="grid h-50 place-items-center sm:h-55"
-              style={{
-                backgroundImage: `radial-gradient(circle, var(--color-dot-pattern) 1px, transparent 1px)`,
-                backgroundSize: "10px 10px",
-              }}
-            >
-              <motion.div
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="text-center"
+            {/* ── Diagnostics Section Strip ── */}
+            <div className="flex items-center justify-between px-5 py-2.5 border-b border-border bg-(--color-surface-elevated)">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted font-semibold">
+                // SYSTEM DIAGNOSTICS
+              </span>
+              <span
+                className="font-mono text-[11px] text-text-muted/40 select-none"
+                aria-hidden="true"
               >
-                <motion.div
-                  className="font-display text-center text-7xl font-bold tracking-tight text-text-primary sm:text-[75px]"
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
+                □
+              </span>
+            </div>
+
+            {/* Diagnostics Bento Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border border-b border-border">
+              <div className="p-5">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted block mb-1.5">
+                  Status Code
+                </span>
+                <p className="font-display font-semibold text-text-primary text-base">
                   404
-                </motion.div>
-              </motion.div>
+                </p>
+                <p className="text-xs text-text-muted mt-1">
+                  Resource not found
+                </p>
+              </div>
+
+              <div className="p-5">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted block mb-1.5">
+                  Resolution
+                </span>
+                <p className="font-display font-semibold text-text-primary text-base flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#ff5f56] inline-block" />
+                  Unresolved Route
+                </p>
+                <p className="text-xs text-text-muted mt-1">
+                  No matching endpoint
+                </p>
+              </div>
+
+              <div className="p-5">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted block mb-1.5">
+                  Recommended Action
+                </span>
+                <p className="font-display font-semibold text-text-primary text-base">
+                  Navigate
+                </p>
+                <p className="text-xs text-text-muted mt-1">
+                  Explore active pages below
+                </p>
+              </div>
+            </div>
+
+            {/* ── Active Pages Section Strip ── */}
+            <div className="flex items-center justify-between px-5 py-2.5 border-b border-border bg-(--color-surface-elevated)">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted font-semibold">
+                // ACTIVE DESTINATIONS
+              </span>
+              <span
+                className="font-mono text-[11px] text-text-muted/40 select-none"
+                aria-hidden="true"
+              >
+                □
+              </span>
+            </div>
+
+            {/* ── Routes List ── */}
+            {routes.map((route) => (
+              <Link
+                key={route.title}
+                href={route.href}
+                className="flex items-center justify-between px-5 py-4 sm:py-5 border-b border-border hover:bg-hover-bg transition-colors group"
+              >
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-bg-secondary text-text-primary group-hover:border-text-muted transition-colors">
+                    {route.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-display font-bold text-text-primary text-base sm:text-lg leading-snug truncate">
+                      {route.title}
+                    </p>
+                    <p className="font-mono text-[11px] sm:text-xs text-text-muted truncate mt-0.5">
+                      {route.subtitle}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 ml-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted hidden sm:block group-hover:text-text-primary transition-colors">
+                    Visit
+                  </span>
+                  <span className="font-mono text-xs text-text-muted group-hover:text-text-primary transition-transform group-hover:translate-x-0.5">
+                    →
+                  </span>
+                </div>
+              </Link>
+            ))}
+
+            {/* ── Bottom Return Strip ── */}
+            <div className="px-5 py-6 text-center">
+              <p className="font-mono text-xs text-text-muted mb-2">
+                No dead ends. Just explore what's live.
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-text-primary hover:underline transition-all"
+              >
+                <span>←</span>
+                <span>Return to Homepage</span>
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
-      {/* Message Section */}
-      <div className="w-full border-b border-border">
-        <section className="mx-auto w-full max-w-200 px-4 sm:px-6">
-          <div className="border-x border-border bg-bg-card">
-            <div className="p-6 sm:p-8">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <h2 className="font-display text-3xl font-bold text-text-primary sm:text-4xl lg:text-5xl">
-                  Page Not Found
-                </h2>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* Description Section */}
-      <div className="w-full border-b border-border">
-        <section className="mx-auto w-full max-w-200 px-4 sm:px-6">
-          <div className="border-x border-border bg-bg-card">
-            <div className="p-6 sm:p-8">
-              <motion.p
-                className="text-base text-text-secondary sm:text-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                Looks like this page doesn't exist. It might have been moved or
-                deleted. Don't worry, you can always head back to the home page
-                and continue exploring.
-              </motion.p>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* CTA Section */}
-      <div className="w-full border-b border-border grow">
-        <section className="mx-auto w-full max-w-200 px-4 sm:px-6">
-          <div className="border-x border-border bg-bg-card h-full flex flex-col">
-            <div className="p-6 sm:p-8">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <Link
-                  href="/"
-                  className="group inline-flex items-center gap-2 rounded-lg border-2 border-text-primary bg-bg-primary px-6 py-3 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-bg-secondary hover:shadow-md"
-                >
-                  <span>Back to Home</span>
-                  <motion.div whileHover={{ x: 4 }} whileTap={{ x: 0 }}>
-                    <ArrowRight className="h-4 w-4" />
-                  </motion.div>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+      <SectionDivider />
+    </main>
   );
-};
-
-export default PageNotFound;
+}
