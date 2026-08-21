@@ -1,4 +1,4 @@
-import type { NowData, RecentlyCompletedItem } from "@/lib/firebase";
+import type { NowData, RecentlyCompletedItem } from "@/lib/data/now-section";
 import SectionDivider from "@/components/section-divider";
 
 interface Props {
