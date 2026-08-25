@@ -30,6 +30,8 @@ const Navbar = () => {
     const pathname = usePathname();
 
     const moreRef = useRef<HTMLDivElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const mobileButtonRef = useRef<HTMLButtonElement>(null);
 
     // Filter main nav items based on feature flags in site-config
     const mainNavItemsFiltered = mainNavItems.filter(
@@ -43,12 +45,26 @@ const Navbar = () => {
 
     const isMoreActive = moreNavItems.some((item) => pathname === item.to);
 
-    // Close More dropdown when clicking outside or pressing Escape
+    // Close dropdowns and mobile menu on outside click, scroll, or Escape key
     useEffect(() => {
         const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
-            if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+            const target = e.target as Node;
+            if (moreRef.current && !moreRef.current.contains(target)) {
                 setIsMoreOpen(false);
             }
+            if (
+                mobileMenuRef.current &&
+                !mobileMenuRef.current.contains(target) &&
+                mobileButtonRef.current &&
+                !mobileButtonRef.current.contains(target)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        const handleScroll = () => {
+            setIsMoreOpen(false);
+            setIsOpen(false);
         };
 
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -60,9 +76,12 @@ const Navbar = () => {
 
         document.addEventListener("pointerdown", handleOutsideClick);
         document.addEventListener("keydown", handleKeyDown);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
         return () => {
             document.removeEventListener("pointerdown", handleOutsideClick);
             document.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
@@ -223,8 +242,9 @@ const Navbar = () => {
                             </button>
                             {/* Mobile Hamburger Button */}
                             <button
+                                ref={mobileButtonRef}
                                 type="button"
-                                className="flex items-center rounded-full border border-border bg-btn-bg p-2 text-text-secondary transition hover:border-border hover:text-text-primary md:hidden"
+                                className="flex items-center rounded-full border border-border bg-btn-bg p-2 text-text-secondary transition hover:border-border hover:text-text-primary md:hidden cursor-pointer"
                                 onClick={() => setIsOpen((prev) => !prev)}
                                 aria-label={isOpen ? "Close menu" : "Open menu"}
                             >
@@ -238,17 +258,30 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu Drawer */}
+                {/* Mobile Menu Drawer & Backdrop */}
                 <AnimatePresence>
                     {isOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                            transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
-                            className="absolute left-0 right-0 top-full mt-2 px-4 md:hidden"
-                        >
-                            <div className="mx-auto w-full max-w-200">
+                        <>
+                            {/* Backdrop overlay */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                onClick={() => setIsOpen(false)}
+                                className="fixed inset-0 top-12 z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
+                                aria-hidden="true"
+                            />
+
+                            {/* Mobile Menu Drawer */}
+                            <motion.div
+                                initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                                transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
+                                className="absolute left-0 right-0 top-full mt-2 px-4 md:hidden z-50"
+                            >
+                                <div ref={mobileMenuRef} className="mx-auto w-full max-w-200">
                                 <div className="rounded-2xl border border-border bg-bg-secondary/95 p-4 shadow-xl backdrop-blur-lg">
                                     <div className="flex flex-col gap-2 text-sm font-medium text-text-secondary">
                                         {/* Main Nav Items on Mobile */}
@@ -315,6 +348,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
             </header>
