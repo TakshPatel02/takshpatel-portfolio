@@ -39,7 +39,7 @@ export const siteConfig = {
         showIsoMetricLogo: false,
         showComponents: true,
         showNpmPackages: true,
-        showAuthkit: true,
+        showAuthkit: false,
         showResources: true,
         showMovies: true,
         showSystem: true,
